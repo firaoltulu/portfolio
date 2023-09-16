@@ -5,8 +5,10 @@ import ContactsIcon from '@mui/icons-material/Contacts';
 import FilterNoneIcon from '@mui/icons-material/FilterNone';
 import HomeIcon from '@mui/icons-material/Home';
 import MenuIcon from '@mui/icons-material/Menu';
+import MessageOutlinedIcon from '@mui/icons-material/MessageOutlined';
 import MilitaryTechIcon from '@mui/icons-material/MilitaryTech';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
 import WorkIcon from '@mui/icons-material/Work';
 import { Grid, Tab, Tabs } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
@@ -16,32 +18,9 @@ import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { useTheme } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 import * as React from 'react';
-import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
-import MessageOutlinedIcon from '@mui/icons-material/MessageOutlined';
-import { styled } from '@mui/material/styles';
 
-
-// const StyledTabs = styled((props) => (
-//     <Tabs
-//         {...props}
-//         TabIndicatorProps={{ children: <span className="MuiTabs-indicatorSpan" /> }}
-//     />
-// )(({ theme }) => ({
-
-//     '& .MuiTabs-indicator': {
-//         display: 'flex',
-//         justifyContent: 'center',
-//         backgroundColor: 'transparent',
-//     },
-//     '& .MuiTabs-indicatorSpan': {
-//         // maxWidth: 40,
-//         width: '100%',
-//         backgroundColor: theme.palette.buttons1.dark,
-//     },
-// }),
-// );
 
 const StyledTabs = styled((props) => <Tabs
     {...props}
@@ -62,6 +41,7 @@ const StyledTabs = styled((props) => <Tabs
 }),
 );
 
+
 const StyledTab = styled((props) => <Tab disableRipple {...props} />)(({ theme }) => ({
     textTransform: 'none',
     fontWeight: theme.typography.fontWeightRegular,
@@ -77,7 +57,6 @@ const StyledTab = styled((props) => <Tab disableRipple {...props} />)(({ theme }
 }),
 );
 
-
 const drawerWidth = "100%";
 const navItems = ['  Home  ', 'Services ', '  About ', '  Skills ', 'Experience', 'Testimonials', 'portfolio', 'Contact '];
 
@@ -85,23 +64,23 @@ const navItems = ['  Home  ', 'Services ', '  About ', '  Skills ', 'Experience'
 function Header(props) {
 
 
-    const { window, setMode, navvalue, setnavValue, tabclicked, settabclicked } = props;
+    const { window, setMode, navvalue, setnavValue, settabclicked } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
 
     const theme = useTheme();
 
     const toggleColorMode = () => {
         if (theme.palette.mode === 'light') {
-            console.log("light mode mode");
+            console.log("dark mode");
             setMode("dark");
         }
         else {
             setMode("light");
-            console.log("dark mode mode");
+            console.log("light mode");
 
         }
 
-    }
+    };
 
     const handleDrawerToggle = () => {
         setMobileOpen((prevState) => !prevState);
@@ -112,13 +91,12 @@ function Header(props) {
     };
 
 
-
     const drawer = (
-        <Box sx={{ textAlign: 'center' }}>
+        <Box sx={{ minWidth: "375px", textAlign: 'center' }}>
 
             <Grid container direction="row" justifyContent="space-between" rowSpacing={3} columnSpacing={1} alignItems="center"
                 sx={{
-                    marginTop: "10em",
+                    marginTop: "8em",
                     padding: "1em",
                 }}>
                 {navItems.map((item, index) => {
@@ -126,7 +104,8 @@ function Header(props) {
 
                         <Grid item xs={6} sx={{}} key={`drwaer-list-index-${index}`}>
 
-                            <Button color="header" variant='contained' sx={{ width: "160px", padding: "1em", border: "1px solid", borderRadius: "1em" }}>
+                            <Button color="header" variant='contained' sx={{ width: "150px", padding: "1em", border: "1px solid", borderRadius: "1em" }}
+                                onClick={(event) => { handleChange(event, index); handleDrawerToggle(); }}>
                                 <Grid container direction="column" alignItems="center">
                                     <Grid item xs={12}>
                                         {(index === 0 ? <HomeIcon></HomeIcon> : "")}
@@ -191,28 +170,18 @@ function Header(props) {
 
                     </Box>
 
-                    <IconButton sx={{ ml: 1, display: { xs: 'block', md: 'block' } }} onClick={toggleColorMode} color="inherit">
+                    <IconButton sx={{ ml: 1, mr: "1em", display: { xs: 'block', md: 'block' } }} onClick={toggleColorMode} color="inherit">
                         {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
                     </IconButton>
 
-                    {!mobileOpen && <IconButton
+                    {<IconButton
                         color="inherit"
                         aria-label="open drawer"
                         edge="start"
                         onClick={handleDrawerToggle}
                         sx={{ mr: 2, ml: "1em", marginLeft: "auto", display: { md: 'none' } }}
                     >
-                        <MenuIcon />
-                    </IconButton>}
-
-                    {mobileOpen && <IconButton
-                        color="inherit"
-                        aria-label="open drawer"
-                        edge="start"
-                        onClick={handleDrawerToggle}
-                        sx={{ mr: 2, ml: "1em", marginLeft: "auto", display: { md: 'none' } }}
-                    >
-                        <CloseIcon />
+                        {!mobileOpen ? <MenuIcon /> : <CloseIcon />}
                     </IconButton>}
 
                 </Toolbar>

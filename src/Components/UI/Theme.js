@@ -1,8 +1,9 @@
 import { createTheme } from '@mui/material/styles';
 
 
+const progress_color= "#045a15";
 const dialog_color = "#ffffff";
-const header_color = "#52088f";
+const header_color = "#2b5358";
 const footer_two_color = "#4f4d55";
 const footer_color = "#e5d8f6";
 const contactme_two_color = "#301684";
@@ -179,13 +180,21 @@ export default createTheme({
         },
         Dialog: {
             main: dialog_color,
-            border:"#ffffff",
+            border: "#ffffff",
             light: "#7648e0",
             dark: "#26017c",
             contrastText: "#ffffff"
         },
         Dialog_shadows: {
             boxShadow: "-5px 5px 101px 27px #2D2D2A"
+        },
+        Progress: {
+            main: progress_color,
+            border: "#ffffff",
+            light: "#7648e0",
+            dark: "#26017c",
+            contrastText: "#ffffff"
+
         },
 
 

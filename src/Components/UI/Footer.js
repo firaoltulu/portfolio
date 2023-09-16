@@ -43,14 +43,13 @@ const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
 
 const Footer = (props) => {
 
+    const { navvalue, setnavValue } = props;
+
     const theme = useTheme();
     const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
-    const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
-
-    const [value, setValue] = React.useState(0);
 
     const handleChange = (event, newValue) => {
-        setValue(newValue);
+        setnavValue({ currentValue: newValue, oldValue: navvalue.currentValue });
     };
 
     return (
@@ -73,14 +72,11 @@ const Footer = (props) => {
 
                         <Grid container direction="row" justifyContent="center" >
 
-                            <Grid item xs={2}><Button color="footer"><Typography variant="subtitle5">Home</Typography></Button></Grid>
-                            <Grid item xs={2}><Button color="footer"><Typography variant="subtitle5">Service</Typography></Button></Grid>
-                            <Grid item xs={2}><Button color="footer"><Typography variant="subtitle5">About</Typography></Button></Grid>
-                            <Grid item xs={2}><Button color="footer"><Typography variant="subtitle5">Skills</Typography></Button></Grid>
-                            <Grid item xs={2}><Button color="footer"><Typography variant="subtitle5">Experience</Typography></Button></Grid>
-                            {/* <Grid item xs={2}><Button color="footer"><Typography variant="subtitle5">Testimonials</Typography></Button></Grid> */}
-                            {/* <Grid item xs={2}><Button color="footer"><Typography variant="subtitle5">Portfolio</Typography></Button></Grid> */}
-                            {/* <Grid item xs={2}><Button color="footer"><Typography variant="subtitle5">Contact</Typography></Button></Grid> */}
+                            <Grid item xs={2}><Button color="footer" onClick={(event) => {  setnavValue({ currentValue: 0, oldValue: navvalue.currentValue })}}><Typography variant="subtitle5">Home</Typography></Button></Grid>
+                            <Grid item xs={2}><Button color="footer" onClick={(event) => {  setnavValue({ currentValue: 1, oldValue: navvalue.currentValue })}}><Typography variant="subtitle5">Service</Typography></Button></Grid>
+                            <Grid item xs={2}><Button color="footer" onClick={(event) => {  setnavValue({ currentValue: 2, oldValue: navvalue.currentValue })}}><Typography variant="subtitle5">About</Typography></Button></Grid>
+                            <Grid item xs={2}><Button color="footer" onClick={(event) => {  setnavValue({ currentValue: 3, oldValue: navvalue.currentValue })}}><Typography variant="subtitle5">Skills</Typography></Button></Grid>
+                            <Grid item xs={2}><Button color="footer" onClick={(event) => {  setnavValue({ currentValue: 4, oldValue: navvalue.currentValue })}}><Typography variant="subtitle5">Experience</Typography></Button></Grid>
 
                         </Grid>
 
@@ -145,7 +141,7 @@ const Footer = (props) => {
 
                         <Grid item xs={12}>
                             <StyledTabs
-                                value={value}
+                                value={navvalue.currentValue}
                                 onChange={handleChange}
                                 aria-label="styled"
                                 variant="scrollable"
@@ -159,6 +155,7 @@ const Footer = (props) => {
                                 <StyledTab label="Experience" />
                                 <StyledTab label="Testimonial" />
                                 <StyledTab label="Potfolio" />
+                                <StyledTab label="Contact" />
 
                             </StyledTabs>
                         </Grid>

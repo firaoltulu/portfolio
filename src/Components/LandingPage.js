@@ -1,28 +1,28 @@
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import CloseIcon from '@mui/icons-material/Close';
 import EmailIcon from '@mui/icons-material/Email';
 import LaunchIcon from '@mui/icons-material/Launch';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PhoneIcon from '@mui/icons-material/Phone';
 import SendIcon from '@mui/icons-material/Send';
 import {
-    Avatar, Box, Button, Card, CardActionArea, CardContent, CardHeader,
+    Alert,
+    Avatar, Box, Button, Card,
+    CardContent, CardHeader,
     CardMedia,
     Dialog,
-    DialogActions,
     DialogContent,
-    DialogTitle,
     Fade,
-    Grid, IconButton, Pagination, Paper, Slide, TextField,
+    Grid, IconButton, LinearProgress, Pagination, Paper, Slide, Snackbar, TextField,
     Typography,
     useMediaQuery
 } from "@mui/material";
 import { styled, useTheme } from '@mui/material/styles';
 import React, { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
-import { useNavigate, redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { TypeAnimation } from 'react-type-animation';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import CloseIcon from '@mui/icons-material/Close';
+import emailjs from '@emailjs/browser';
 
 
 import bootstrapicon from "../Assets/bootstrapicon.png";
@@ -38,13 +38,13 @@ import netframeworkicon from "../Assets/netframeworkicon.png";
 import nodejsicon from "../Assets/nodejsicon.png";
 import phpicon from "../Assets/phpicon.png";
 import portfolio_one from "../Assets/portfolio_one.png";
+import portfolio_one_big from "../Assets/portfolio_one_big.png";
 import portfolio_three from "../Assets/portfolio_three.png";
+import portfolio_three_big from "../Assets/portfolio_three_big.png";
 import portfolio_two from "../Assets/portfolio_two.png";
+import portfolio_two_big from "../Assets/portfolio_two_big.png";
 import pythonicon from "../Assets/pythonicon.png";
 import reacticon from "../Assets/reacticon.png";
-import portfolio_one_big from "../Assets/portfolio_one_big.png";
-import portfolio_two_big from "../Assets/portfolio_two_big.png";
-import portfolio_three_big from "../Assets/portfolio_three_big.png";
 
 const Testimonials = [
     {
@@ -110,21 +110,21 @@ const portfolio = [
         title: "Course Review",
         message: "This is a page where students can find honest and informative reviews about the courses offered on the e-learning platform.",
         portfolio_image: portfolio_one_big,
-        link: "https://github.com/firaoltulu/simple_shell"
+        link: "https://github.com/firaoltulu/Utopia"
     },
     {
         id: 2,
         title: "Admin Side Course List",
         message: "This site administrator's course list page acts as a central control panel, empowering administrators with the tools and insights needed to effectively manage the course offerings on the website.",
         portfolio_image: portfolio_two_big,
-        link: "https://github.com/firaoltulu/alx-higher_level_programming"
+        link: "https://github.com/firaoltulu/Utopia"
     },
     {
         id: 3,
         title: "Client Course List",
         message: "The course list page presents courses in a visually appealing and intuitive manner, typically consisting of a grid or list layout. Each course listing includes key information such as the course title, description, instructor details, duration, difficulty level, and user ratings.",
         portfolio_image: portfolio_three_big,
-        link: "https://github.com/firaoltulu/alx-low_level_programming"
+        link: "https://github.com/firaoltulu/Utopia"
     },
 ];
 
@@ -236,6 +236,13 @@ function LandingPage(props) {
     const [contactemail, setcontactemail] = React.useState("");
     const [contactmessage, setcontactmessage] = React.useState("");
 
+    const [open_contactme_success, setopen_contactme_success] = React.useState(false);
+    const [open_contactme_error_one, setopen_contactme_error_one] = React.useState(false);
+    const [open_contactme_error_two, setopen_contactme_error_two] = React.useState(false);
+
+
+    const [progresson, setprogresson] = React.useState(false);
+
 
     const useIsInViewport = (ref) => {
         const [isIntersecting, setIsIntersecting] = useState(false);
@@ -269,72 +276,70 @@ function LandingPage(props) {
     const portfolioinview = useIsInViewport(Portfolio_cardref);
     const contactlastinview = useIsInViewport(contactone_ref);
 
-    // React.useEffect(() => {
-    //     if (navvalue.currentValue === 0) {
-    //         window.scrollTo({
-    //             top: contactref.current.offsetTop,
-    //             left: 0,
-    //             behavior: "smooth",
-    //         });
+    React.useEffect(() => {
+        if (navvalue.currentValue === 0) {
+            window.scrollTo({
+                top: contactref.current.offsetTop,
+                left: 0,
+                behavior: "smooth",
+            });
 
-    //     }
-    //     else if (navvalue.currentValue === 1) {
-    //         window.scrollTo({
-    //             top: servicesref.current.offsetTop,
-    //             left: 0,
-    //             behavior: "smooth",
-    //         });
+        }
+        else if (navvalue.currentValue === 1) {
+            window.scrollTo({
+                top: servicesref.current.offsetTop,
+                left: 0,
+                behavior: "smooth",
+            });
 
-    //     }
-    //     else if (navvalue.currentValue === 2) {
-    //         window.scrollTo({
-    //             top: aboutref.current.offsetTop,
-    //             left: 0,
-    //             behavior: "smooth",
-    //         });
-    //     }
-    //     else if (navvalue.currentValue === 3) {
-    //         window.scrollTo({
-    //             top: skillref.current.offsetTop,
-    //             left: 0,
-    //             behavior: "smooth",
-    //         });
-    //     }
-    //     else if (navvalue.currentValue === 4) {
-    //         window.scrollTo({
-    //             top: experienceref.current.offsetTop,
-    //             left: 0,
-    //             behavior: "smooth",
-    //         });
-    //     }
-    //     else if (navvalue.currentValue === 5) {
-    //         window.scrollTo({
-    //             top: Testimonialsref.current.offsetTop,
-    //             left: 0,
-    //             behavior: "smooth",
-    //         });
-    //     }
-    //     else if (navvalue.currentValue === 6) {
-    //         window.scrollTo({
-    //             top: Portfolio_cardref.current.offsetTop,
-    //             left: 0,
-    //             behavior: "smooth",
-    //         });
-    //     }
-    //     else if (navvalue.currentValue === 7) {
-    //         window.scrollTo({
-    //             top: contactone_ref.current.offsetTop,
-    //             left: 0,
-    //             behavior: "smooth",
-    //         });
-    //     }
-    //     else {
+        }
+        else if (navvalue.currentValue === 2) {
+            window.scrollTo({
+                top: aboutref.current.offsetTop,
+                left: 0,
+                behavior: "smooth",
+            });
+        }
+        else if (navvalue.currentValue === 3) {
+            window.scrollTo({
+                top: skillref.current.offsetTop,
+                left: 0,
+                behavior: "smooth",
+            });
+        }
+        else if (navvalue.currentValue === 4) {
+            window.scrollTo({
+                top: experienceref.current.offsetTop,
+                left: 0,
+                behavior: "smooth",
+            });
+        }
+        else if (navvalue.currentValue === 5) {
+            window.scrollTo({
+                top: Testimonialsref.current.offsetTop,
+                left: 0,
+                behavior: "smooth",
+            });
+        }
+        else if (navvalue.currentValue === 6) {
+            window.scrollTo({
+                top: Portfolio_cardref.current.offsetTop,
+                left: 0,
+                behavior: "smooth",
+            });
+        }
+        else if (navvalue.currentValue === 7) {
+            window.scrollTo({
+                top: contactone_ref.current.offsetTop,
+                left: 0,
+                behavior: "smooth",
+            });
+        }
+        else {
 
-    //     }
+        }
 
-    //     console.log({ navvalue });
-
-    // }, [navvalue]);
+    }, [navvalue]);
 
     React.useEffect(() => {
 
@@ -440,214 +445,213 @@ function LandingPage(props) {
     }, [contactinview, serviceinview, aboutinview, skillinview, experienceinview, Testimonialinview, portfolioinview, contactlastinview]);
 
 
-    React.useEffect(() => {
+    // React.useEffect(() => {
 
-        try {
+    //     try {
 
-            // if (navvalue.currentValue - navvalue.oldValue === -1 ||
-            //     navvalue.currentValue - navvalue.oldValue === 1 ||
-            //     navvalue.currentValue === navvalue.oldValue) {
+    //         // if (navvalue.currentValue - navvalue.oldValue === -1 ||
+    //         //     navvalue.currentValue - navvalue.oldValue === 1 ||
+    //         //     navvalue.currentValue === navvalue.oldValue) {
 
-            if (contactslide) {
-                if (navvalue.currentValue - navvalue.oldValue === -1 ||
-                    navvalue.currentValue - navvalue.oldValue === 1 ||
-                    navvalue.currentValue === navvalue.oldValue) {
+    //         if (contactslide) {
+    //             if (navvalue.currentValue - navvalue.oldValue === -1 ||
+    //                 navvalue.currentValue - navvalue.oldValue === 1 ||
+    //                 navvalue.currentValue === navvalue.oldValue) {
 
-                    setnavValue({ currentValue: 0, oldValue: navvalue.currentValue });
-                }
-                else {
-                    const difference = navvalue.currentValue - navvalue.oldValue;
+    //                 setnavValue({ currentValue: 0, oldValue: navvalue.currentValue });
+    //             }
+    //             else {
+    //                 const difference = navvalue.currentValue - navvalue.oldValue;
 
-                    if (difference >= 2) {
-                        console.log({ difference });
-                        setnavValue({ currentValue: navvalue.currentValue, oldValue: navvalue.oldValue + 1 });
-                    }
-                    else if (difference <= -2) {
-                        console.log({ difference });
-                        setnavValue({ currentValue: navvalue.currentValue, oldValue: navvalue.oldValue - 1 });
-                    }
+    //                 if (difference >= 2) {
+    //                     console.log({ difference });
+    //                     setnavValue({ currentValue: navvalue.currentValue, oldValue: navvalue.oldValue + 1 });
+    //                 }
+    //                 else if (difference <= -2) {
+    //                     console.log({ difference });
+    //                     setnavValue({ currentValue: navvalue.currentValue, oldValue: navvalue.oldValue - 1 });
+    //                 }
 
 
-                }
+    //             }
 
-            }
-            else if (serviceslide) {
-                if (navvalue.currentValue - navvalue.oldValue === -1 ||
-                    navvalue.currentValue - navvalue.oldValue === 1 ||
-                    navvalue.currentValue === navvalue.oldValue) {
+    //         }
+    //         else if (serviceslide) {
+    //             if (navvalue.currentValue - navvalue.oldValue === -1 ||
+    //                 navvalue.currentValue - navvalue.oldValue === 1 ||
+    //                 navvalue.currentValue === navvalue.oldValue) {
 
-                    setnavValue({ currentValue: 1, oldValue: navvalue.currentValue });
-                }
-                else {
-                    const difference = navvalue.currentValue - navvalue.oldValue;
+    //                 setnavValue({ currentValue: 1, oldValue: navvalue.currentValue });
+    //             }
+    //             else {
+    //                 const difference = navvalue.currentValue - navvalue.oldValue;
 
-                    if (difference >= 2) {
-                        console.log({ difference });
-                        setnavValue({ currentValue: navvalue.currentValue, oldValue: navvalue.oldValue + 1 });
-                    }
-                    else if (difference <= -2) {
-                        console.log({ difference });
-                        setnavValue({ currentValue: navvalue.currentValue, oldValue: navvalue.oldValue - 1 });
-                    }
-                }
+    //                 if (difference >= 2) {
+    //                     console.log({ difference });
+    //                     setnavValue({ currentValue: navvalue.currentValue, oldValue: navvalue.oldValue + 1 });
+    //                 }
+    //                 else if (difference <= -2) {
+    //                     console.log({ difference });
+    //                     setnavValue({ currentValue: navvalue.currentValue, oldValue: navvalue.oldValue - 1 });
+    //                 }
+    //             }
 
-            }
-            else if (aboutslide) {
+    //         }
+    //         else if (aboutslide) {
 
-                if (navvalue.currentValue - navvalue.oldValue === -1 ||
-                    navvalue.currentValue - navvalue.oldValue === 1 ||
-                    navvalue.currentValue === navvalue.oldValue) {
+    //             if (navvalue.currentValue - navvalue.oldValue === -1 ||
+    //                 navvalue.currentValue - navvalue.oldValue === 1 ||
+    //                 navvalue.currentValue === navvalue.oldValue) {
 
-                    setnavValue({ currentValue: 2, oldValue: navvalue.currentValue });
-                }
-                else {
-                    const difference = navvalue.currentValue - navvalue.oldValue;
+    //                 setnavValue({ currentValue: 2, oldValue: navvalue.currentValue });
+    //             }
+    //             else {
+    //                 const difference = navvalue.currentValue - navvalue.oldValue;
 
-                    if (difference >= 2) {
-                        console.log({ difference });
-                        setnavValue({ currentValue: navvalue.currentValue, oldValue: navvalue.oldValue + 1 });
-                    }
-                    else if (difference <= -2) {
-                        console.log({ difference });
-                        setnavValue({ currentValue: navvalue.currentValue, oldValue: navvalue.oldValue - 1 });
-                    }
-                }
+    //                 if (difference >= 2) {
+    //                     console.log({ difference });
+    //                     setnavValue({ currentValue: navvalue.currentValue, oldValue: navvalue.oldValue + 1 });
+    //                 }
+    //                 else if (difference <= -2) {
+    //                     console.log({ difference });
+    //                     setnavValue({ currentValue: navvalue.currentValue, oldValue: navvalue.oldValue - 1 });
+    //                 }
+    //             }
 
-            }
-            else if (skillslide) {
+    //         }
+    //         else if (skillslide) {
 
-                if (navvalue.currentValue - navvalue.oldValue === -1 ||
-                    navvalue.currentValue - navvalue.oldValue === 1 ||
-                    navvalue.currentValue === navvalue.oldValue) {
+    //             if (navvalue.currentValue - navvalue.oldValue === -1 ||
+    //                 navvalue.currentValue - navvalue.oldValue === 1 ||
+    //                 navvalue.currentValue === navvalue.oldValue) {
 
-                    setnavValue({ currentValue: 3, oldValue: navvalue.currentValue });
-                }
-                else {
-                    const difference = navvalue.currentValue - navvalue.oldValue;
+    //                 setnavValue({ currentValue: 3, oldValue: navvalue.currentValue });
+    //             }
+    //             else {
+    //                 const difference = navvalue.currentValue - navvalue.oldValue;
 
-                    if (difference >= 2) {
-                        console.log({ difference });
-                        setnavValue({ currentValue: navvalue.currentValue, oldValue: navvalue.oldValue + 1 });
-                    }
-                    else if (difference <= -2) {
-                        console.log({ difference });
-                        setnavValue({ currentValue: navvalue.currentValue, oldValue: navvalue.oldValue - 1 });
-                    }
-                }
+    //                 if (difference >= 2) {
+    //                     console.log({ difference });
+    //                     setnavValue({ currentValue: navvalue.currentValue, oldValue: navvalue.oldValue + 1 });
+    //                 }
+    //                 else if (difference <= -2) {
+    //                     console.log({ difference });
+    //                     setnavValue({ currentValue: navvalue.currentValue, oldValue: navvalue.oldValue - 1 });
+    //                 }
+    //             }
 
-            }
-            else if (experienceslide) {
+    //         }
+    //         else if (experienceslide) {
 
-                if (navvalue.currentValue - navvalue.oldValue === -1 ||
-                    navvalue.currentValue - navvalue.oldValue === 1 ||
-                    navvalue.currentValue === navvalue.oldValue) {
+    //             if (navvalue.currentValue - navvalue.oldValue === -1 ||
+    //                 navvalue.currentValue - navvalue.oldValue === 1 ||
+    //                 navvalue.currentValue === navvalue.oldValue) {
 
-                    setnavValue({ currentValue: 4, oldValue: navvalue.currentValue });
-                }
-                else {
-                    const difference = navvalue.currentValue - navvalue.oldValue;
+    //                 setnavValue({ currentValue: 4, oldValue: navvalue.currentValue });
+    //             }
+    //             else {
+    //                 const difference = navvalue.currentValue - navvalue.oldValue;
 
-                    if (difference >= 2) {
-                        console.log({ difference });
-                        setnavValue({ currentValue: navvalue.currentValue, oldValue: navvalue.oldValue + 1 });
-                    }
-                    else if (difference <= -2) {
-                        console.log({ difference });
-                        setnavValue({ currentValue: navvalue.currentValue, oldValue: navvalue.oldValue - 1 });
-                    }
-                }
+    //                 if (difference >= 2) {
+    //                     console.log({ difference });
+    //                     setnavValue({ currentValue: navvalue.currentValue, oldValue: navvalue.oldValue + 1 });
+    //                 }
+    //                 else if (difference <= -2) {
+    //                     console.log({ difference });
+    //                     setnavValue({ currentValue: navvalue.currentValue, oldValue: navvalue.oldValue - 1 });
+    //                 }
+    //             }
 
-            }
-            else if (testimonialslide) {
-                if (navvalue.currentValue - navvalue.oldValue === -1 ||
-                    navvalue.currentValue - navvalue.oldValue === 1 ||
-                    navvalue.currentValue === navvalue.oldValue) {
+    //         }
+    //         else if (testimonialslide) {
+    //             if (navvalue.currentValue - navvalue.oldValue === -1 ||
+    //                 navvalue.currentValue - navvalue.oldValue === 1 ||
+    //                 navvalue.currentValue === navvalue.oldValue) {
 
-                    setnavValue({ currentValue: 5, oldValue: navvalue.currentValue });
-                }
-                else {
-                    const difference = navvalue.currentValue - navvalue.oldValue;
+    //                 setnavValue({ currentValue: 5, oldValue: navvalue.currentValue });
+    //             }
+    //             else {
+    //                 const difference = navvalue.currentValue - navvalue.oldValue;
 
-                    if (difference >= 2) {
-                        console.log({ difference });
-                        setnavValue({ currentValue: navvalue.currentValue, oldValue: navvalue.oldValue + 1 });
-                    }
-                    else if (difference <= -2) {
-                        console.log({ difference });
-                        setnavValue({ currentValue: navvalue.currentValue, oldValue: navvalue.oldValue - 1 });
-                    }
-                }
+    //                 if (difference >= 2) {
+    //                     console.log({ difference });
+    //                     setnavValue({ currentValue: navvalue.currentValue, oldValue: navvalue.oldValue + 1 });
+    //                 }
+    //                 else if (difference <= -2) {
+    //                     console.log({ difference });
+    //                     setnavValue({ currentValue: navvalue.currentValue, oldValue: navvalue.oldValue - 1 });
+    //                 }
+    //             }
 
-            }
-            else if (portfolioslide) {
+    //         }
+    //         else if (portfolioslide) {
 
-                if (navvalue.currentValue - navvalue.oldValue === -1 ||
-                    navvalue.currentValue - navvalue.oldValue === 1 ||
-                    navvalue.currentValue === navvalue.oldValue) {
+    //             if (navvalue.currentValue - navvalue.oldValue === -1 ||
+    //                 navvalue.currentValue - navvalue.oldValue === 1 ||
+    //                 navvalue.currentValue === navvalue.oldValue) {
 
-                    setnavValue({ currentValue: 6, oldValue: navvalue.currentValue });
-                }
-                else {
-                    const difference = navvalue.currentValue - navvalue.oldValue;
+    //                 setnavValue({ currentValue: 6, oldValue: navvalue.currentValue });
+    //             }
+    //             else {
+    //                 const difference = navvalue.currentValue - navvalue.oldValue;
 
-                    if (difference >= 2) {
-                        console.log({ difference });
-                        setnavValue({ currentValue: navvalue.currentValue, oldValue: navvalue.oldValue + 1 });
-                    }
-                    else if (difference <= -2) {
-                        console.log({ difference });
-                        setnavValue({ currentValue: navvalue.currentValue, oldValue: navvalue.oldValue - 1 });
-                    }
-                }
-            }
-            else if (contactlastslide) {
-                if (navvalue.currentValue - navvalue.oldValue === -1 ||
-                    navvalue.currentValue - navvalue.oldValue === 1 ||
-                    navvalue.currentValue === navvalue.oldValue) {
+    //                 if (difference >= 2) {
+    //                     console.log({ difference });
+    //                     setnavValue({ currentValue: navvalue.currentValue, oldValue: navvalue.oldValue + 1 });
+    //                 }
+    //                 else if (difference <= -2) {
+    //                     console.log({ difference });
+    //                     setnavValue({ currentValue: navvalue.currentValue, oldValue: navvalue.oldValue - 1 });
+    //                 }
+    //             }
+    //         }
+    //         else if (contactlastslide) {
+    //             if (navvalue.currentValue - navvalue.oldValue === -1 ||
+    //                 navvalue.currentValue - navvalue.oldValue === 1 ||
+    //                 navvalue.currentValue === navvalue.oldValue) {
 
-                    setnavValue({ currentValue: 7, oldValue: navvalue.currentValue });
-                }
-                else {
-                    const difference = navvalue.currentValue - navvalue.oldValue;
+    //                 setnavValue({ currentValue: 7, oldValue: navvalue.currentValue });
+    //             }
+    //             else {
+    //                 const difference = navvalue.currentValue - navvalue.oldValue;
 
-                    if (difference >= 2) {
-                        console.log({ difference });
-                        setnavValue({ currentValue: navvalue.currentValue, oldValue: navvalue.oldValue + 1 });
-                    }
-                    else if (difference <= -2) {
-                        console.log({ difference });
-                        setnavValue({ currentValue: navvalue.currentValue, oldValue: navvalue.oldValue - 1 });
-                    }
-                }
-            }
-            else {
-                setcontactlastslide(false);
-                setcontactslide(false);
-            }
+    //                 if (difference >= 2) {
+    //                     console.log({ difference });
+    //                     setnavValue({ currentValue: navvalue.currentValue, oldValue: navvalue.oldValue + 1 });
+    //                 }
+    //                 else if (difference <= -2) {
+    //                     console.log({ difference });
+    //                     setnavValue({ currentValue: navvalue.currentValue, oldValue: navvalue.oldValue - 1 });
+    //                 }
+    //             }
+    //         }
+    //         else {
+    //             setcontactlastslide(false);
+    //             setcontactslide(false);
+    //         }
 
-            // }
-            // else {
+    //         // }
+    //         // else {
 
-            // console.log({ navvalue });
-            // const difference = navvalue.currentValue - navvalue.oldValue;
+    //         // console.log({ navvalue });
+    //         // const difference = navvalue.currentValue - navvalue.oldValue;
 
-            // if (difference >= 2) {
-            //     console.log({ difference });
-            //     setnavValue({ currentValue: navvalue.currentValue, oldValue: navvalue.oldValue + 1 });
-            // }
-            // else if (difference <= -2) {
-            //     console.log({ difference });
-            //     setnavValue({ currentValue: navvalue.currentValue, oldValue: navvalue.oldValue - 1 });
-            // }
+    //         // if (difference >= 2) {
+    //         //     console.log({ difference });
+    //         //     setnavValue({ currentValue: navvalue.currentValue, oldValue: navvalue.oldValue + 1 });
+    //         // }
+    //         // else if (difference <= -2) {
+    //         //     console.log({ difference });
+    //         //     setnavValue({ currentValue: navvalue.currentValue, oldValue: navvalue.oldValue - 1 });
+    //         // }
 
-            // }
+    //         // }
 
-        } catch (error) {
+    //     } catch (error) {
 
-        }
+    //     }
 
-    }, [contactslide, serviceslide, aboutslide, skillslide, experienceslide, testimonialslide, portfolioslide, contactlastslide]);
-
+    // }, [contactslide, serviceslide, aboutslide, skillslide, experienceslide, testimonialslide, portfolioslide, contactlastslide]);
 
 
     const incrementCount = () => {
@@ -749,7 +753,6 @@ function LandingPage(props) {
     };
 
     const handleDialognavigateClose = () => {
-        navigate(portfolio[opendialog.Portfolio_Index].link, {});
         setopendialog({ open: false, Portfolio_Index: 0 });
     };
 
@@ -771,11 +774,55 @@ function LandingPage(props) {
     };
 
     const handlesubmitcontact = (event) => {
-        console.log("submitting");
 
 
+        try {
 
+            if (contactname !== "" && contactemail !== "" && contactmessage !== "") {
+
+                setprogresson(true);
+                const newobj = {
+                    from_name: contactname,
+                    from_email: contactemail,
+                    message: contactmessage
+                };
+
+                emailjs.send('service_373x18j', 'template_3l9xb4n', newobj, 'do-zZ5G9TCljB0czQ')
+                    .then((result) => {
+                        if (result.status === 200) {
+                            setopen_contactme_success(true);
+                            setcontactname("");
+                            setcontactemail("");
+                            setcontactmessage("");
+                            setprogresson(false);
+                        } else {
+                            setprogresson(false);
+                            setopen_contactme_error_two(true);
+                        }
+
+                    }).catch((error) => {
+                        setprogresson(false);
+                        setopen_contactme_error_two(true);
+                    });
+
+            }
+            else {
+                setopen_contactme_error_one(true);
+            }
+
+        } catch (error) {
+
+            setprogresson(false);
+            setopen_contactme_error_two(true);
+        }
     };
+
+    const handle_Contactme_dialog_Close = (event) => {
+        setopen_contactme_success(false);
+        setopen_contactme_error_one(false);
+        setopen_contactme_error_two(false);
+    };
+
 
     return (
 
@@ -803,7 +850,7 @@ function LandingPage(props) {
                                 sx={{
                                     [theme.breakpoints.down("sm")]: {
                                         Width: "100%",
-                                        marginBottom: "4em",
+                                        marginBottom: "1em",
                                     },
 
                                 }}>
@@ -812,15 +859,13 @@ function LandingPage(props) {
                                     sx={{
                                         padding: "1em",
                                         position: "relative",
-                                        animationName: "example",
+                                        animationName: "animat2",
                                         animationDuration: "4s",
                                         animationIterationCount: "infinite",
 
-                                        "@keyframes example": {
+                                        "@keyframes animat2": {
                                             "0%": { left: "0px", top: "0px" },
-                                            "30%": { left: "0px", top: "-70px" },
-                                            // "40%": { left: "0px", top: "0px" },
-                                            "60%": { left: "0px", top: "70px" },
+                                            "50%": { left: "0px", top: "-20px" },
                                             "100%": { left: "0px", top: "0px" },
                                         }
                                     }}>
@@ -839,7 +884,7 @@ function LandingPage(props) {
 
                         <Fade in={contactslide}>
 
-                            <Grid item xs={12} sm={6} md={6}
+                            <Grid item xs={12} sm={12} md={6}
                                 sx={{
                                     textAlign: matchesSM ? "center" : undefined,
                                     minWidth: "21.0em",
@@ -891,8 +936,8 @@ function LandingPage(props) {
                                     <Grid item xs={6}>
 
                                         <Button
-                                            component={Link}
-                                            to="/estimate"
+                                            href="https://drive.google.com/uc?export=download&id=1qVhAilAJU-5HoCsMuwIvLDpIDGIe8XjH"
+                                            target="_blank"
                                             sx={{
                                                 ...theme.typography.estimate,
                                                 backgroundColor: theme.palette.secondary.main,
@@ -905,7 +950,6 @@ function LandingPage(props) {
                                             }}
 
                                             variant="outlined"
-                                            onClick={() => props.setValue(2)}
 
                                         >
                                             <span style={{ marginRight: 10 }}>Download CV</span>
@@ -917,8 +961,6 @@ function LandingPage(props) {
                                     <Grid item xs={6}>
 
                                         <Button
-                                            // component={Link}
-                                            // to="/revolution"
                                             sx={{
                                                 ...theme.typography.learnButton,
                                                 backgroundColor: theme.palette.secondary.main,
@@ -931,7 +973,7 @@ function LandingPage(props) {
                                             }}
                                             variant="outlined"
                                             onClick={() => {
-                                                setnavValue(7);
+                                                setnavValue({ currentValue: 7, oldValue: navvalue.currentValue });
                                             }}
                                             endIcon={<ArrowForwardIcon
                                                 width={15}
@@ -953,7 +995,7 @@ function LandingPage(props) {
 
                         {!matchesSM && <Fade in={contactslide}>
 
-                            {<Grid item xs={12} sm={6} md={6}
+                            {<Grid item xs={12} sm={12} md={6}
                                 sx={{
                                     Width: "100%",
                                 }}>
@@ -961,48 +1003,28 @@ function LandingPage(props) {
                                 {!matchesSM && <Card align={matchesSM ? "center" : "left"}
                                     sx={{
                                         backgroundColor: theme.palette.footer_two.main,
-                                        borderRadius: "10em",
+                                        borderRadius: "1em",
                                         padding: "1em",
                                         position: "relative",
-                                        animationName: "example",
+                                        animationName: "animat1",
                                         animationDuration: "4s",
                                         animationIterationCount: "infinite",
 
-                                        "@keyframes example": {
+                                        "@keyframes animat1": {
                                             "0%": { left: "0px", top: "0px" },
-                                            "30%": { left: "0px", top: "-70px" },
-                                            // "40%": { left: "0px", top: "0px" },
-                                            "60%": { left: "0px", top: "70px" },
+                                            "30%": { left: "0px", top: matchesMD ? "5px" : "-10px" },
+                                            "60%": { left: "0px", top: "20px" },
                                             "100%": { left: "0px", top: "0px" },
                                         }
                                     }}>
                                     <CardMedia
                                         component="img"
                                         elevation={12}
-                                        sx={{ maxWidth: "100%", minWidth: "250px", borderRadius: "10em", ...theme.palette.Dialog_shadows }}
+                                        sx={{ maxWidth: "100%", minWidth: "250px", ...theme.palette.Dialog_shadows }}
                                         image={portfolio[opendialog.Portfolio_Index].portfolio_image}
                                         alt="portfolio_image"
                                     />
                                 </Card>}
-
-                                {/* <Typography variant="h3" align={matchesSM ? "center" : "left"}
-                                    sx={{
-                                        padding: "1em",
-                                        position: "relative",
-                                        animationName: "example",
-                                        animationDuration: "4s",
-                                        animationIterationCount: "infinite",
-
-                                        "@keyframes example": {
-                                            "0%": { left: "0px", top: "0px" },
-                                            "50%": { left: "0px", top: "100px" },
-                                            "100%": { left: "0px", top: "0px" },
-                                        }
-                                    }}>
-                                    Hello, It's Me
-                                </Typography> */}
-
-                                {/* <Lottie options={defaultOptions} height={"100%"} width={"100%"} /> */}
 
                             </Grid>}
                         </Fade>}
@@ -1425,43 +1447,46 @@ function LandingPage(props) {
                         alignItems="center"
                         direction="row"
                         sx={{
-                            paddingTop: "5em",
+                            padding: "1em",
                             paddingBottom: "5em"
                         }}
                     >
 
-                        {<Grid item xs={12} sm={6} md={6}
+                        {<Grid item xs={12} sm={12} md={6}
                             sx={{
-                                maxWidth: "50em",
-                                minWidth: "21em",
                                 paddingTop: "2em",
-                                paddingLeft: "10%",
-                                [theme.breakpoints.down("sm")]: {
-                                    maxWidth: "30em",
-                                },
-                                // padding: "1em",
-                                position: "relative",
-                                animationName: "example",
-                                animationDuration: "4s",
-                                animationIterationCount: "infinite",
-
-                                "@keyframes example": {
-                                    "0%": { left: "0px", top: "0px" },
-                                    "50%": { left: "0px", top: "100px" },
-                                    "100%": { left: "0px", top: "0px" },
-                                }
                             }}>
 
-                            <Typography variant="h3" align={matchesSM ? "center" : "left"}>
-                                Hello, It's Me
-                            </Typography>
+                            {<Card align={matchesMD ? "center" : "left"}
+                                sx={{
+                                    backgroundColor: theme.palette.footer_two.main,
+                                    borderRadius: "1em",
+                                    padding: "1em",
+                                    position: "relative",
+                                    animationName: "animat3",
+                                    animationDuration: "4s",
+                                    animationIterationCount: "infinite",
 
-                            {/* <Lottie options={defaultOptions} height={"100%"} width={"100%"} /> */}
+                                    "@keyframes animat3": {
+                                        "0%": { left: "0px", top: "0px" },
+                                        "50%": { left: "0px", top: matchesMD ? "-20px" : "20px" },
+                                        "100%": { left: "0px", top: "0px" },
+                                    }
+                                }}>
+                                <CardMedia
+                                    component="img"
+                                    elevation={12}
+                                    sx={{ maxWidth: "100%", minWidth: "250px", ...theme.palette.Dialog_shadows }}
+                                    image={portfolio[opendialog.Portfolio_Index].portfolio_image}
+                                    alt="portfolio_image"
+                                />
+                            </Card>}
+
 
                         </Grid>}
 
 
-                        <Grid item xs={12} sm={6} md={6}
+                        <Grid item xs={12} sm={12} md={6}
 
                             sx={{
 
@@ -2480,7 +2505,7 @@ function LandingPage(props) {
                                             </Typography>
                                         </Grid>
                                         <Grid item xs={12} sm={6} md={6} sx={{ marginBottom: "1em", borderRadius: "1em" }} >
-                                            <TextField fullWidth value={contactname} color="contactme_two" name="name" id="name" placeholder="Enter your name." onChange={handlecontactchange} />
+                                            <TextField disabled={progresson} fullWidth value={contactname} color="contactme_two" name="name" id="name" placeholder="Enter your name." onChange={handlecontactchange} />
                                         </Grid>
 
                                         <Grid item xs={12} sm={6} md={6} sx={{ marginBottom: "1em", }} >
@@ -2489,7 +2514,7 @@ function LandingPage(props) {
                                             </Typography>
                                         </Grid>
                                         <Grid item xs={12} sm={6} md={6} sx={{ marginBottom: "1em", }}>
-                                            <TextField fullWidth value={contactemail} color="contactme_two" name="email" id="email" placeholder="Enter your email." onChange={handlecontactchange} />
+                                            <TextField disabled={progresson} fullWidth value={contactemail} color="contactme_two" name="email" id="email" placeholder="Enter your email." onChange={handlecontactchange} />
                                         </Grid>
 
                                         <Grid item xs={12} sm={6} md={6} sx={{ marginBottom: "1em", }} >
@@ -2499,6 +2524,7 @@ function LandingPage(props) {
                                         </Grid>
                                         <Grid item xs={12} sm={6} md={6} sx={{ marginBottom: "1em", }}>
                                             <TextField
+                                                disabled={progresson}
                                                 name="message"
                                                 id="message"
                                                 fullWidth
@@ -2511,8 +2537,15 @@ function LandingPage(props) {
                                             />
                                         </Grid>
 
+                                        {progresson && <Grid item xs={12} sm={6} md={6} sx={{ marginBottom: "1em" }}>
+                                            <LinearProgress color="Progress" sx={{
+                                                height: 10,
+                                                borderRadius: 5,
+                                            }} />
+                                        </Grid>}
+
                                         <Grid item xs={12} sm={6} md={6} sx={{}}>
-                                            <Button variant="contained" fullWidth color="contactme_two" endIcon={<SendIcon />} onClick={handlesubmitcontact}>
+                                            <Button variant="contained" disabled={progresson} fullWidth color="contactme_two" endIcon={<SendIcon />} onClick={handlesubmitcontact}>
                                                 Send
                                             </Button>
                                         </Grid>
@@ -2603,7 +2636,7 @@ function LandingPage(props) {
                                     </CardContent>
 
                                     <Box sx={{ display: 'flex', alignItems: 'center', mt: "0em", p: "1em" }}>
-                                        <Button variant='outlined' target="_blank" sx={{
+                                        <Button variant='outlined' href={portfolio[opendialog.Portfolio_Index].link} target="_blank" sx={{
                                             ...theme.typography.learnButton,
                                             backgroundColor: theme.palette.secondary.main,
                                             fontSize: "0.7rem",
@@ -2634,6 +2667,46 @@ function LandingPage(props) {
 
             </BootstrapDialog>
 
+            <Snackbar
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                open={open_contactme_success}
+                onClose={handle_Contactme_dialog_Close}
+                key={'bottom' + 'right'}
+                autoHideDuration={60000}
+            >
+                <Alert onClose={handle_Contactme_dialog_Close} severity="success" sx={{ width: '100%' }}>
+                    Thank U For Reaching.I will reply as soon as possible.
+                </Alert>
+
+            </Snackbar>
+
+            <Snackbar
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                open={open_contactme_error_one}
+                onClose={handle_Contactme_dialog_Close}
+                key={'error_one' + 'bottom' + 'right'}
+                autoHideDuration={60000}
+            >
+                <Alert onClose={handle_Contactme_dialog_Close} severity="error" sx={{ width: '100%' }}>
+                    
+                    Please specify the required fields.
+                </Alert>
+
+            </Snackbar>
+
+            <Snackbar
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                open={open_contactme_error_two}
+                onClose={handle_Contactme_dialog_Close}
+                key={'error_two' + 'bottom' + 'right'}
+                autoHideDuration={60000}
+            >
+                <Alert onClose={handle_Contactme_dialog_Close} severity="error" sx={{ width: '100%' }}>
+                    Something went wrong.Try again.
+                </Alert>
+
+            </Snackbar>
+
         </React.Fragment >
 
     );
@@ -2641,4 +2714,8 @@ function LandingPage(props) {
 };
 
 export default LandingPage;
+
+
+
+
 

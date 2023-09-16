@@ -1,9 +1,8 @@
 import { createTheme } from '@mui/material/styles';
-// import { amber, deepOrange, grey } from '@mui/material/colors';
 
-
+const progress_color= "#b8d2d5";
 const dialog_color = "#212125";
-const header_color = "#6106ab";
+const header_color = "#2b2e58";
 const footer_two_color = "#4f4d55";
 const footer_color = "#e5d8f6";
 const contactme_two_color = "#285089";
@@ -37,9 +36,9 @@ export default createTheme({
             "contrastText": "#fefcff"
         },
         error: {
-            "main": "#f44336",
-            "light": "#e57373",
-            "dark": "#d32f2f",
+            "main": "#ff0909",
+            "light": "#ff0909",
+            "dark": "#ff0909",
             "contrastText": "#fff"
         },
         warning: {
@@ -180,6 +179,16 @@ export default createTheme({
         Dialog_shadows: {
             boxShadow: "-5px 5px 101px 27px #676874"
         },
+
+        Progress: {
+            main: progress_color,
+            border: "#ffffff",
+            light: "#7648e0",
+            dark: "#26017c",
+            contrastText: "#ffffff"
+
+        },
+
     },
     typography: {
         tab: {

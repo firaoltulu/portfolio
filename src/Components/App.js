@@ -1,17 +1,15 @@
-import React, { useRef } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Box, Fab, ThemeProvider, Typography } from "@mui/material";
-import { useTheme, createTheme } from '@mui/material/styles';
+import { Box, ThemeProvider } from "@mui/material";
 import CssBaseline from '@mui/material/CssBaseline';
-import NavigationIcon from '@mui/icons-material/Navigation';
+import { createTheme } from '@mui/material/styles';
+import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 
-import theme from './UI/Theme';
-import DarkTheme from "./UI/DarkTheme";
-import Header from "./UI/Header";
-import Footer from "./UI/Footer";
 import LandingPage from "./LandingPage";
-import third from "./UI/Github/third";
+import DarkTheme from "./UI/DarkTheme";
+import Footer from "./UI/Footer";
+import Header from "./UI/Header";
+import theme from './UI/Theme';
 
 const getDesignTokens = (mode) => ({
 
@@ -27,8 +25,6 @@ const getDesignTokens = (mode) => ({
 
 function App(props) {
 
-  const [selectedIndex, setSelectedIndex] = React.useState(0);
-  const [value, setValue] = React.useState(0);
 
   const [navvalue, setnavValue] = React.useState({ currentValue: 0, oldValue: 0 });
   const [tabclicked, settabclicked] = React.useState(false);
@@ -43,7 +39,6 @@ function App(props) {
   }, [mode]);
 
   const handlescroll = (event) => {
-    // console.log("is scrolling ");
   }
 
 
@@ -73,25 +68,16 @@ function App(props) {
                       {...props}
                       navvalue={navvalue}
                       setnavValue={setnavValue}
-                      setValue={setValue}
-                      setSelectedIndex={setSelectedIndex}
                       tabclicked={tabclicked}
                       settabclicked={settabclicked}
                     />
                   }
                 />
-                {/* <Route
-                  exact
-                  path="/firaoltulu/alx-higher_level_programming"
-                  element={
-                    <third></third>
-                  }
-                /> */}
               </Routes>
 
             </Box>
 
-            <Footer setValue={setValue} setSelectedIndex={setSelectedIndex} />
+            <Footer navvalue={navvalue} setnavValue={setnavValue} />
 
           </BrowserRouter>
 

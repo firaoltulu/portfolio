@@ -1,4 +1,4 @@
-import { Box, ThemeProvider } from "@mui/material";
+import { Box, CircularProgress, Grid, ThemeProvider } from "@mui/material";
 import CssBaseline from '@mui/material/CssBaseline';
 import { createTheme } from '@mui/material/styles';
 import React from "react";
@@ -10,6 +10,7 @@ import DarkTheme from "./UI/DarkTheme";
 import Footer from "./UI/Footer";
 import Header from "./UI/Header";
 import theme from './UI/Theme';
+import { modeStorageGet, modeStorageSet } from "../Libraries/localstorage";
 
 const getDesignTokens = (mode) => ({
 
@@ -30,11 +31,44 @@ function App(props) {
   const [tabclicked, settabclicked] = React.useState(false);
 
 
-  const [mode, setMode] = React.useState('light');
+  const [mode, setMode] = React.useState('');
   const [loc_theme, setloc_theme] = React.useState(theme);
 
+  const [waitloading, setwaitloading] = React.useState(true);
+
   React.useEffect(() => {
-    setloc_theme(createTheme(getDesignTokens(mode)));
+
+    const mode = modeStorageGet();
+    if (mode) {
+      setMode(mode.Type);
+
+    }
+    else {
+      setMode('light');
+    }
+
+  }, []);
+
+
+  React.useEffect(() => {
+
+    if (mode !== '') {
+
+      const newobj = {
+        Title: mode,
+        Type: mode,
+      };
+
+      modeStorageSet(newobj);
+
+      setloc_theme(createTheme(getDesignTokens(mode)));
+      setwaitloading(false);
+
+    }
+    else {
+      setwaitloading(true);
+
+    }
 
   }, [mode]);
 
@@ -47,7 +81,7 @@ function App(props) {
 
       <CssBaseline>
 
-        <Box className="grandparent" onScroll={(event) => { handlescroll(event) }} sx={{ minWidth: "375px", }}>
+        {!waitloading && <Box className="grandparent" onScroll={(event) => { handlescroll(event) }} sx={{ minWidth: "375px", }}>
 
           <BrowserRouter>
 
@@ -59,6 +93,7 @@ function App(props) {
                 flexGrow: 1,
               }}
             >
+
               <Routes>
                 <Route
                   exact
@@ -81,7 +116,13 @@ function App(props) {
 
           </BrowserRouter>
 
-        </Box>
+        </Box>}
+
+        {waitloading && <Box className="grandparent" sx={{ minWidth: "375px", marginTop: "4em" }}>
+          <Grid container justifyContent={"center"} alignItems={"center"} >
+            <CircularProgress color="inherit" sx={{ height: "20em" }} />
+          </Grid>
+        </Box>}
 
       </CssBaseline>
 

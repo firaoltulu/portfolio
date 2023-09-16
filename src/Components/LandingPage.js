@@ -936,7 +936,7 @@ function LandingPage(props) {
                                     <Grid item xs={6}>
 
                                         <Button
-                                            href="https://drive.google.com/uc?export=download&id=1qVhAilAJU-5HoCsMuwIvLDpIDGIe8XjH"
+                                            href="https://chocolate-kristal-51.tiiny.site"
                                             target="_blank"
                                             sx={{
                                                 ...theme.typography.estimate,
@@ -2688,7 +2688,6 @@ function LandingPage(props) {
                 autoHideDuration={60000}
             >
                 <Alert onClose={handle_Contactme_dialog_Close} severity="error" sx={{ width: '100%' }}>
-                    
                     Please specify the required fields.
                 </Alert>
 
@@ -2714,7 +2713,6 @@ function LandingPage(props) {
 };
 
 export default LandingPage;
-
 
 
 

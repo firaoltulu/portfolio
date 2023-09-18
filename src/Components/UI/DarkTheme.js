@@ -1,6 +1,9 @@
 import { createTheme } from '@mui/material/styles';
 
-const progress_color= "#b8d2d5";
+
+const portfolio_image_color_two = "#301a44";
+const portfolio_image_color = "#1c022b";
+const progress_color = "#b8d2d5";
 const dialog_color = "#212125";
 const header_color = "#2b2e58";
 const footer_two_color = "#4f4d55";
@@ -188,6 +191,21 @@ export default createTheme({
             contrastText: "#ffffff"
 
         },
+        portfolio_photo: {
+            main: portfolio_image_color,
+            border: "#ffffff",
+            light: "#7648e0",
+            dark: "#26017c",
+            contrastText: "#ffffff"
+        },
+        portfolio_photo_two: {
+            main: portfolio_image_color_two,
+            border: "#ffffff",
+            light: "#7648e0",
+            dark: "#26017c",
+            contrastText: "#ffffff"
+
+        }
 
     },
     typography: {

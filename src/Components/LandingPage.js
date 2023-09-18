@@ -45,6 +45,8 @@ import portfolio_two from "../Assets/portfolio_two.png";
 import portfolio_two_big from "../Assets/portfolio_two_big.png";
 import pythonicon from "../Assets/pythonicon.png";
 import reacticon from "../Assets/reacticon.png";
+import myphoto_one from "../Assets/myphoto_one.png";
+import myphoto_two from "../Assets/myphoto_two.png";
 
 const Testimonials = [
     {
@@ -831,10 +833,10 @@ function LandingPage(props) {
             <Grid container direction="column" className="grandparent" >
 
                 {/* contact me */}
-                <Grid item xs={12} ref={contactref}>
+                <Grid item xs={12} ref={contactref} >
 
                     <Grid container
-                        justify="flex-end"
+                        justify="center"
                         alignItems="center"
                         direction="row"
                         sx={{
@@ -857,6 +859,7 @@ function LandingPage(props) {
 
                                 {<Card
                                     sx={{
+                                        borderRadius: "4em",
                                         padding: "1em",
                                         position: "relative",
                                         animationName: "animat2",
@@ -872,14 +875,15 @@ function LandingPage(props) {
                                     <CardMedia
                                         component="img"
                                         elevation={12}
-                                        sx={{ maxWidth: "100%", minWidth: "250px", ...theme.palette.Dialog_shadows }}
-                                        image={portfolio[opendialog.Portfolio_Index].portfolio_image}
+                                        sx={{ borderRadius: "3em", maxWidth: "100%", minWidth: "250px", backgroundColor: theme.palette.portfolio_photo.main }}
+                                        image={myphoto_one}
                                         alt="portfolio_image"
                                     />
                                 </Card>}
 
 
                             </Grid>}
+
                         </Fade>}
 
                         <Fade in={contactslide}>
@@ -898,15 +902,15 @@ function LandingPage(props) {
 
                                 }}>
 
-                                <Typography variant="h3" align={matchesSM ? "center" : "left"}>
+                                <Typography variant="h3" align={matchesMD ? "center" : "left"}>
                                     Hello, It's Me
                                 </Typography>
 
-                                <Typography variant="h2" align={matchesSM ? "center" : "left"}>
+                                <Typography variant="h2" align={matchesMD ? "center" : "left"}>
                                     Firaol Tulu
                                 </Typography>
 
-                                <Typography variant="h6" align={matchesSM ? "center" : "left"}>
+                                <Typography variant="h6" align={matchesMD ? "center" : "left"}>
                                     I'm a{" "}
                                     <TypeAnimation
                                         sequence={[
@@ -923,7 +927,7 @@ function LandingPage(props) {
                                     />
                                 </Typography>
 
-                                <Typography variant="subtitle3" align={matchesSM ? "center" : "left"} sx={{ marginTop: "1em" }}>
+                                <Typography variant="subtitle3" align={matchesMD ? "center" : "left"} sx={{ marginTop: "1em" }}>
                                     I Specialize in building custom, responsive websites and software that are not
                                     only beautiful but also deliver a seamless user experience.
                                 </Typography>
@@ -996,19 +1000,23 @@ function LandingPage(props) {
                         {!matchesSM && <Fade in={contactslide}>
 
                             {<Grid item xs={12} sm={12} md={6}
+                                align="center"
                                 sx={{
                                     Width: "100%",
+
                                 }}>
 
-                                {!matchesSM && <Card align={matchesSM ? "center" : "left"}
+                                {!matchesSM && <Card align={matchesSM ? "center" : "center"}
                                     sx={{
-                                        backgroundColor: theme.palette.footer_two.main,
-                                        borderRadius: "1em",
+
+                                        borderRadius: "4em",
                                         padding: "1em",
                                         position: "relative",
                                         animationName: "animat1",
                                         animationDuration: "4s",
                                         animationIterationCount: "infinite",
+                                        maxWidth: "370px", minWidth: "250px",
+                                        maxHeight: "370px",
 
                                         "@keyframes animat1": {
                                             "0%": { left: "0px", top: "0px" },
@@ -1020,13 +1028,15 @@ function LandingPage(props) {
                                     <CardMedia
                                         component="img"
                                         elevation={12}
-                                        sx={{ maxWidth: "100%", minWidth: "250px", ...theme.palette.Dialog_shadows }}
-                                        image={portfolio[opendialog.Portfolio_Index].portfolio_image}
+
+                                        sx={{ borderRadius: "3em", maxWidth: "343px", minWidth: "250px", maxHeight: "343px", backgroundColor: theme.palette.portfolio_photo.main }}
+                                        image={myphoto_one}
                                         alt="portfolio_image"
                                     />
                                 </Card>}
 
                             </Grid>}
+
                         </Fade>}
 
                     </Grid>
@@ -1061,7 +1071,6 @@ function LandingPage(props) {
                                         container
                                         direction="row"
                                         justifyContent={matchesSM ? "center" : undefined}
-                                        // justify={matchesSM ? "center" : undefined}
                                         sx={{
                                             marginTop: "3em",
                                             [theme.breakpoints.down("sm")]: {
@@ -1069,7 +1078,7 @@ function LandingPage(props) {
                                         }}
                                     >
 
-                                        <Gridcustomone item xs={12} sm={8} md={8}
+                                        <Gridcustomone item xs={12} sm={10} md={8}
                                             style={{
                                                 paddingLeft: matchesSM ? 0 : "2em",
                                                 textAlign: matchesSM ? "center" : undefined,
@@ -1151,8 +1160,6 @@ function LandingPage(props) {
                                     <Grid container direction="row"
                                         justifyContent={matchesSM ? "center" : "flex-end"}
                                         columnSpacing={12}
-
-
                                         alignItems="center"
                                         sx={{
                                             padding: matchesSM ? 0 : "2em",
@@ -1164,7 +1171,7 @@ function LandingPage(props) {
                                     >
 
 
-                                        <Gridcustomone item xs={12} sm={8} md={8}
+                                        <Gridcustomone item xs={12} sm={10} md={8}
                                             style={{
                                                 textAlign: matchesSM ? "center" : "right",
                                             }}
@@ -1260,7 +1267,7 @@ function LandingPage(props) {
                                         }}
                                     >
 
-                                        <Gridcustomone item xs={12} sm={8} md={8}
+                                        <Gridcustomone item xs={12} sm={10} md={8}
                                             style={{
                                                 paddingLeft: matchesSM ? 0 : "2em",
                                                 textAlign: matchesSM ? "center" : undefined,
@@ -1350,7 +1357,7 @@ function LandingPage(props) {
                                     >
 
 
-                                        <Gridcustomone item xs={12} sm={8} md={8}
+                                        <Gridcustomone item xs={12} sm={10} md={8}
                                             style={{
                                                 textAlign: matchesSM ? "center" : "right",
                                             }}
@@ -1453,20 +1460,21 @@ function LandingPage(props) {
                     >
 
                         {<Grid item xs={12} sm={12} md={6}
+                            align="center"
                             sx={{
                                 paddingTop: "2em",
                             }}>
 
                             {<Card align={matchesMD ? "center" : "left"}
                                 sx={{
-                                    backgroundColor: theme.palette.footer_two.main,
-                                    borderRadius: "1em",
+                                    borderRadius: "4em",
                                     padding: "1em",
                                     position: "relative",
                                     animationName: "animat3",
                                     animationDuration: "4s",
                                     animationIterationCount: "infinite",
-
+                                    maxWidth: "433px", minWidth: "250px",
+                                    maxHeight: "433px",
                                     "@keyframes animat3": {
                                         "0%": { left: "0px", top: "0px" },
                                         "50%": { left: "0px", top: matchesMD ? "-20px" : "20px" },
@@ -1476,8 +1484,8 @@ function LandingPage(props) {
                                 <CardMedia
                                     component="img"
                                     elevation={12}
-                                    sx={{ maxWidth: "100%", minWidth: "250px", ...theme.palette.Dialog_shadows }}
-                                    image={portfolio[opendialog.Portfolio_Index].portfolio_image}
+                                    sx={{ borderRadius: "3em", maxWidth: "401px", minWidth: "250px", maxHeight: "401px", backgroundColor: theme.palette.portfolio_photo_two.main }}
+                                    image={myphoto_two}
                                     alt="portfolio_image"
                                 />
                             </Card>}

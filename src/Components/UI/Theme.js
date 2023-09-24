@@ -1,6 +1,10 @@
 import { createTheme } from '@mui/material/styles';
 
-
+const portfolio_four_color = "#252c8b";
+const portfolio_Game_one_color = "#670303";
+const portfolio_EA_two_color = "#7a7e04";
+const portfolio_EA_one_color = "#530360";
+const float_header_color = "rgba(41, 1, 82, .15)";
 const portfolio_image_color_two = "#ebddf9";
 const portfolio_image_color = "#ebddf9";
 const progress_color = "#045a15";
@@ -17,7 +21,6 @@ const workexperience = "#010539";
 const buttonfocuscolor = "#c1fcb4";
 const headercolor = "#1b1d3f";
 const secondcolor = "#374434";
-
 
 
 export default createTheme({
@@ -211,8 +214,38 @@ export default createTheme({
             light: "#7648e0",
             dark: "#26017c",
             contrastText: "#ffffff"
-
-        }
+        },
+        float_header: {
+            main: float_header_color,
+            border: "#ffffff",
+            light: "#7648e0",
+            dark: "#26017c",
+            contrastText: "#ffffff"
+        },
+        portfolio_EA_one: {
+            main: portfolio_EA_one_color,
+            light: "#ba68c8",
+            dark: "#7b1fa2",
+            contrastText: "#efefef"
+        },
+        portfolio_EA_two: {
+            main: portfolio_EA_two_color,
+            light: "#ba68c8",
+            dark: "#7b1fa2",
+            contrastText: "#ffffff"
+        },
+        portfolio_Game_one: {
+            main: portfolio_Game_one_color,
+            light: "#ba68c8",
+            dark: "#7b1fa2",
+            contrastText: "#ffffff"
+        },
+        portfolio_four: {
+            main: portfolio_four_color,
+            light: "#ba68c8",
+            dark: "#7b1fa2",
+            contrastText: "#ffffff"
+        },
 
 
     },

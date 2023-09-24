@@ -14,7 +14,7 @@ import {
     Dialog,
     DialogContent,
     Fade,
-    Grid, IconButton, LinearProgress, Pagination, Paper, Slide, Snackbar, TextField,
+    Grid, IconButton, LinearProgress, Pagination, Paper, Slide, Snackbar, Tab, Tabs, TextField,
     Typography,
     useMediaQuery
 } from "@mui/material";
@@ -47,6 +47,12 @@ import pythonicon from "../Assets/pythonicon.png";
 import reacticon from "../Assets/reacticon.png";
 import myphoto_one from "../Assets/myphoto_one.png";
 import myphoto_two from "../Assets/myphoto_two.png";
+import portfolio_EA_one_big from "../Assets/portfolio_EA_one_big.png";
+import portfolio_EA_one from "../Assets/portfolio_EA_one.png";
+import portfolio_EA_two from "../Assets/portfolio_EA_two.jpg";
+import portfolio_EA_two_big from "../Assets/portfolio_EA_two_big.jpg";
+import portfolio_four from "../Assets/portfolio_four.png";
+import portfolio_four_big from "../Assets/portfolio_four_big.png";
 
 const Testimonials = [
     {
@@ -112,6 +118,7 @@ const portfolio = [
         title: "Course Review",
         message: "This is a page where students can find honest and informative reviews about the courses offered on the e-learning platform.",
         portfolio_image: portfolio_one_big,
+        portfolio_image_small: portfolio_one,
         link: "https://github.com/firaoltulu/Utopia"
     },
     {
@@ -119,6 +126,7 @@ const portfolio = [
         title: "Admin Side Course List",
         message: "This site administrator's course list page acts as a central control panel, empowering administrators with the tools and insights needed to effectively manage the course offerings on the website.",
         portfolio_image: portfolio_two_big,
+        portfolio_image_small: portfolio_two,
         link: "https://github.com/firaoltulu/Utopia"
     },
     {
@@ -126,8 +134,48 @@ const portfolio = [
         title: "Client Course List",
         message: "The course list page presents courses in a visually appealing and intuitive manner, typically consisting of a grid or list layout. Each course listing includes key information such as the course title, description, instructor details, duration, difficulty level, and user ratings.",
         portfolio_image: portfolio_three_big,
+        portfolio_image_small: portfolio_three,
         link: "https://github.com/firaoltulu/Utopia"
     },
+    {
+        id: 4,
+        title: "Grading students",
+        message: "The course list page presents courses in a visually appealing and intuitive manner, typically consisting of a grid or list layout. Each course listing includes key information such as the course title, description, instructor details, duration, difficulty level, and user ratings.",
+        portfolio_image: portfolio_four_big,
+        portfolio_image_small: portfolio_three,
+        link: "https://github.com/firaoltulu/Utopia"
+    },
+
+];
+
+const Game_portfolio = [
+    {
+        id: 1,
+        title: "RPG Game",
+        message: "This game set in the medieval era. In this RPG, players assume the mantle of a heroic figure entrusted with the duty of saving the land from the clutches of oppressive local lords. Your goal is to liberate the people from the tyrannical rule of local lords by undertaking quests, forging alliances, and strategically planning your actions. Alongside your companions, you will explore towns, villages, forests, and castles,",
+        portfolio_image: portfolio_one_big,
+        portfolio_image_small: portfolio_one,
+    },
+
+];
+
+const EA_portfolio = [
+    {
+        id: 1,
+        title: "EA based on Bollinger Bands",
+        message: "Bollinger Bands is a popular technical analysis tool that consists of three lines: a simple moving average (SMA) in the middle and an upper and lower band that represent standard deviations from the moving average. The EA calculates and send Entry and Exit signal to the user or Enter based on the user setup.",
+        portfolio_image: portfolio_EA_one_big,
+        portfolio_image_small: portfolio_one,
+    },
+
+    {
+        id: 2,
+        title: "Prints the order book",
+        message: "An order book refers to a list of buy and sell orders for a particular security or asset, arranged in a descending order of price. It shows the quantity of the security that buyers and sellers are willing to transact at different price levels. The order book provides valuable information to traders about market sentiment and the likelihood of a trade occurring at a particular price,The EA It prints in a file,",
+        portfolio_image: portfolio_EA_two_big,
+        portfolio_image_small: portfolio_EA_two,
+    },
+
 ];
 
 const Gridcustom = styled((props) => {
@@ -150,6 +198,15 @@ const Gridcustomone = styled((props) => {
             duration: theme.transitions.duration.standard,
         }),
     },
+    animationName: "animation1",
+    animationDuration: "8s",
+    animationIterationCount: "infinite",
+
+    "@keyframes animation1": {
+        "0%": { left: "0px", top: "0px" },
+        "50%": { left: "0px", top: "40px" },
+        "100%": { left: "0px", top: "0px" },
+    }
 }));
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
@@ -178,10 +235,62 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     },
 }));
 
+const StyledTabs = styled((props) => (
+    <Tabs
+        {...props}
+        TabIndicatorProps={{ children: <span className="MuiTabs-indicatorSpan" /> }}
+    />
+))({
+    '& .MuiTabs-indicator': {
+        display: 'flex',
+        justifyContent: 'center',
+        backgroundColor: 'transparent',
+    },
+    '& .MuiTabs-indicatorSpan': {
+        maxWidth: 40,
+        width: '100%',
+        backgroundColor: '#635ee7',
+    },
+});
+
+const StyledTab = styled((props) => <Tab disableRipple {...props} />)(({ theme }) => ({
+    textTransform: 'none',
+    fontWeight: theme.typography.fontWeightRegular,
+    fontSize: theme.typography.pxToRem(15),
+    // marginRight: theme.spacing(1),
+    color: theme.palette.buttons1.main,
+    '&.Mui-selected': {
+        color: theme.palette.buttons1.light,
+    },
+    '&.Mui-focusVisible': {
+        backgroundColor: theme.palette.buttons1.main,
+    },
+}),
+);
+
+function CustomTabPanel(props) {
+    const { children, value, index, ...other } = props;
+
+    return (
+        <div
+            role="tabpanel"
+            hidden={value !== index}
+            id={`simple-tabpanel-${index}`}
+            aria-labelledby={`simple-tab-${index}`}
+            {...other}
+        >
+            {value === index && (
+                <Box sx={{ p: 1 }}>
+                    {children}
+                </Box>
+            )}
+        </div>
+    );
+};
 
 function LandingPage(props) {
 
-    const { navvalue, setnavValue, tabclicked, settabclicked } = props;
+    const { navvalue, setnavValue } = props;
 
     const contactref = useRef(null);
     const servicesref = useRef(null);
@@ -192,7 +301,6 @@ function LandingPage(props) {
     const Portfolio_cardref = useRef(null);
     const contactone_ref = useRef(null);
 
-    const navigate = useNavigate();
 
     const theme = useTheme();
     const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
@@ -211,6 +319,9 @@ function LandingPage(props) {
     const [portfolio_one_show, setportfolio_one_show] = React.useState(false);
     const [portfolio_two_show, setportfolio_two_show] = React.useState(false);
     const [portfolio_three_show, setportfolio_three_show] = React.useState(false);
+    const [portfolio_four_show, setportfolio_four_show] = React.useState(false);
+    const [portfolio_five_show, setportfolio_five_show] = React.useState(false);
+    const [portfolio_six_show, setportfolio_six_show] = React.useState(false);
 
 
     const [service_one_show, setservice_one_show] = React.useState(false);
@@ -233,6 +344,8 @@ function LandingPage(props) {
     const [currentval, setcurrentval] = React.useState(0);
 
     const [opendialog, setopendialog] = React.useState({ open: false, Portfolio_Index: 0 });
+    const [open_gamedialog, setopen_gamedialog] = React.useState({ open: false, Portfolio_Index: 0 });
+    const [open_EAdialog, setopen_EAdialog] = React.useState({ open: false, Portfolio_Index: 0 });
 
     const [contactname, setcontactname] = React.useState("");
     const [contactemail, setcontactemail] = React.useState("");
@@ -244,6 +357,8 @@ function LandingPage(props) {
 
 
     const [progresson, setprogresson] = React.useState(false);
+
+    const [portfolio_tab_Value, setportfolio_tab_Value] = React.useState(0);
 
 
     const useIsInViewport = (ref) => {
@@ -706,11 +821,25 @@ function LandingPage(props) {
 
         setportfolio_three_show(true);
     };
+    const handlePortfolio_four_mouseover = (event) => {
+
+        setportfolio_four_show(true);
+    };
+    const handlePortfolio_five_mouseover = (event) => {
+
+        setportfolio_five_show(true);
+    };
+    const handlePortfolio_six_mouseover = (event) => {
+
+        setportfolio_six_show(true);
+    };
 
     const handlePortfoliomouseleave = (event) => {
         setportfolio_one_show(false);
         setportfolio_two_show(false);
         setportfolio_three_show(false);
+        setportfolio_four_show(false);
+        setportfolio_five_show(false);
     };
 
     const handlethemorebuttons = (event, index) => {
@@ -752,6 +881,8 @@ function LandingPage(props) {
 
     const handleDialogClose = () => {
         setopendialog({ open: false, Portfolio_Index: 0 });
+        setopen_gamedialog({ open: false, Portfolio_Index: 0 });
+        setopen_EAdialog({ open: false, Portfolio_Index: 0 });
     };
 
     const handleDialognavigateClose = () => {
@@ -825,6 +956,9 @@ function LandingPage(props) {
         setopen_contactme_error_two(false);
     };
 
+    const handleportfolio_tabChange = (event, newValue) => {
+        setportfolio_tab_Value(newValue);
+    };
 
     return (
 
@@ -916,9 +1050,11 @@ function LandingPage(props) {
                                         sequence={[
                                             "Software Developer.",
                                             1000,
-                                            "Web Developer.",
+                                            "Website Developer.",
                                             1000,
-                                            "UI/UX Designer.",
+                                            "Backend Developer.",
+                                            1000,
+                                            "React Developer.",
                                             1000,
                                         ]}
                                         speed={10}
@@ -928,8 +1064,11 @@ function LandingPage(props) {
                                 </Typography>
 
                                 <Typography variant="subtitle3" align={matchesMD ? "center" : "left"} sx={{ marginTop: "1em" }}>
-                                    I Specialize in building custom, responsive websites and software that are not
-                                    only beautiful but also deliver a seamless user experience.
+                                    Hey there! 👋 I'm Firaol Tulu, a Node backend developer and React aficionado.
+                                    I'm an artist with code, crafting web and mobile app masterpieces. With 2+ years of experience
+                                    in Serverless, nextjs, API development, and Automation Development, I bring innovation and meet
+                                    deadlines. Quality, scalability, and serverless magic are my specialties.
+                                    Let's create something awesome together! 😄✨.
                                 </Typography>
 
                                 <Grid
@@ -1048,9 +1187,18 @@ function LandingPage(props) {
                     padding: "1em",
                     paddingTop: "5em",
                     backgroundColor: theme.palette.primary.main,
+
                 }}>
 
-                    <Grid container direction="column">
+                    <Grid container direction="column"
+                        sx={{
+                            // backgroundPosition: "center",
+                            // backgroundSize: "cover",
+                            // backgroundAttachment: "fixed",
+                            // backgroundRepeat: "no-repeat",
+                            // height: "60em",
+                            // width: "100%",
+                        }}>
 
                         <Grid item xs={12} sx={{ marginBottom: "5em" }}>
                             <Typography variant="h6" align={"center"}>
@@ -1065,7 +1213,9 @@ function LandingPage(props) {
 
                             <Grid container direction="column" rowSpacing={4}>
 
-                                <Grid item xs={12}>
+                                <Grid item xs={12}
+                                    sx={{
+                                    }}>
 
                                     <Grid
                                         container
@@ -1082,6 +1232,16 @@ function LandingPage(props) {
                                             style={{
                                                 paddingLeft: matchesSM ? 0 : "2em",
                                                 textAlign: matchesSM ? "center" : undefined,
+
+                                                animationName: "animation1",
+                                                animationDuration: "8s",
+                                                animationIterationCount: "infinite",
+
+                                                "@keyframes animation1": {
+                                                    "0%": { left: "0px", top: "0px" },
+                                                    "50%": { left: "0px", top: "40px" },
+                                                    "100%": { left: "0px", top: "0px" },
+                                                }
                                             }}
                                         >
                                             <Paper
@@ -1148,6 +1308,7 @@ function LandingPage(props) {
 
 
                                             </Paper>
+
                                         </Gridcustomone>
 
 
@@ -2045,6 +2206,7 @@ function LandingPage(props) {
                 <Grid item xs={12} ref={Testimonialsref} sx={{
                     padding: "1em",
                     paddingTop: "5em",
+                    paddingBottom: "5em",
                     backgroundColor: theme.palette.primary.main,
                 }}>
                     <Grid container direction="column">
@@ -2140,219 +2302,617 @@ function LandingPage(props) {
 
                         <Grid item xs={12} sx={{ padding: "1em" }}>
 
-                            <Grid container direction="row" justifyContent="center" alignItems="center" columnSpacing={2} rowSpacing={2} >
+                            <Grid container direction={"column"} alignItems={"center"}>
 
-                                <Grid item xs={12} sm={6} md={4} >
+                                <Grid item xs={3} sx={{ marginBottom: "1em", }}>
+                                    <Box sx={{ width: "100%" }}>
 
-                                    <Card
-                                        ref={Portfolio_cardref}
-                                        align={"left"}
-                                        elevation={12}
-                                        name="portfolio_one"
-                                        id="portfolio_one"
-                                        onMouseOver={(event) => { handlePortfolio_one_mouseover(event) }}
-                                        onMouseLeave={(event) => { handlePortfoliomouseleave(event) }}
-                                        sx={{
-                                            position: "relative",
-                                            padding: "0em",
-                                            backgroundColor: theme.palette.portfolio_one.main
-                                        }}>
-                                        <Slide in={portfolio_one_show} style={{ transitionDelay: portfolio_one_show ? '50ms' : '0ms' }}>
-
-                                            {<Grid container sx={{
-                                                backgroundColor: "aqua",
-                                                backgroundColor: "rgba(0, 0, 0, .75)",
-                                                position: "absolute",
-                                                width: "100%",
-                                                height: "100%",
-                                            }}>
-                                                <Grid item xs={12} align="right">
-                                                    {<IconButton color="portfolio" onClick={(event) => { setopendialog({ open: true, Portfolio_Index: 0 }) }} sx={{}}>
-                                                        <LaunchIcon></LaunchIcon>
-                                                    </IconButton>}
-                                                </Grid>
-
-                                                <Grid item xs={12} sx={{ padding: "1em" }}>
-
-                                                    <Typography variant="subtitle5" textAlign={"left"} color={theme.palette.portfolio_one.contrastText}>
-                                                        E-Learning course review
-                                                    </Typography>
-                                                    <br></br>
-                                                    <Typography variant="subtitle4" textAlign={"left"} color={theme.palette.portfolio_one.contrastText}>
-                                                        Build this fully responsive review course to make the
-                                                        end user review the course before purchase.
-                                                    </Typography>
-
-                                                </Grid>
-
-
-                                            </Grid>}
-
-                                        </Slide>
-
-                                        <Paper
-                                            align={"center"}
-                                            elevation={2}
-                                            sx={{
-                                                alignContent: "center",
-                                                padding: "2em",
-                                                backgroundColor: theme.palette.portfolio_one.main,
-                                                "&:hover": {
-                                                },
-                                            }}>
-                                            <img
-                                                align={"center"}
-                                                sx={{
-
-                                                }}
-                                                alt="java icon"
-                                                src={portfolio_one}
-                                            />
-                                        </Paper>
-
-                                    </Card>
+                                        <StyledTabs
+                                            value={portfolio_tab_Value}
+                                            onChange={handleportfolio_tabChange}
+                                            aria-label="styled"
+                                            variant="scrollable"
+                                            scrollButtons={true}
+                                        // centered
+                                        >
+                                            {/* <StyledTab label="All" /> */}
+                                            <StyledTab label="Websites" />
+                                            <StyledTab label="Games" />
+                                            <StyledTab label="Expert Advisor" />
+                                        </StyledTabs>
+                                    </Box>
 
                                 </Grid>
 
-                                <Grid item xs={12} sm={6} md={4} >
 
-                                    <Card
-                                        align={"left"}
-                                        elevation={12}
-                                        name="portfolio_two"
-                                        id="portfolio_two"
-                                        onMouseOver={(event) => { handlePortfolio_two_mouseover(event) }}
-                                        onMouseLeave={(event) => { handlePortfoliomouseleave(event) }}
-                                        sx={{
-                                            position: "relative",
-                                            padding: "0em",
-                                            backgroundColor: theme.palette.portfolio_two.main
-                                        }}>
-                                        <Slide in={portfolio_two_show} style={{ transitionDelay: portfolio_two_show ? '50ms' : '0ms' }}>
+                                <CustomTabPanel value={portfolio_tab_Value} index={0}>
 
-                                            {<Grid container sx={{
-                                                backgroundColor: "aqua",
-                                                backgroundColor: "rgba(0, 0, 0, .75)",
-                                                position: "absolute",
-                                                width: "100%",
-                                                height: "100%",
-                                            }}>
-                                                <Grid item xs={12} align="right">
-                                                    {<IconButton color="portfolio" onClick={(event) => { setopendialog({ open: true, Portfolio_Index: 1 }) }} sx={{}}>
-                                                        <LaunchIcon></LaunchIcon>
-                                                    </IconButton>}
-                                                </Grid>
+                                    <Grid container direction="row" justifyContent="center" alignItems="center" columnSpacing={2} rowSpacing={2} >
 
-                                                <Grid item xs={12} sx={{ padding: "1em" }}>
+                                        <Grid item xs={12} sm={6} md={4} >
 
-                                                    <Typography variant="subtitle5" textAlign={"left"} color={theme.palette.portfolio_two.contrastText}>
-                                                        E-Learning Admin side.
-                                                    </Typography>
-                                                    <br></br>
-                                                    <Typography variant="subtitle4" textAlign={"left"} color={theme.palette.portfolio_two.contrastText}>
-                                                        Build this fully responsive course admin side that include
-                                                        course listing, Editing, Adding etc.
-                                                    </Typography>
-
-                                                </Grid>
-
-
-                                            </Grid>}
-
-                                        </Slide>
-                                        <Paper
-                                            align={"center"}
-                                            elevation={2}
-                                            sx={{
-                                                alignContent: "center",
-                                                padding: "2em",
-                                                backgroundColor: theme.palette.portfolio_two.main,
-                                                "&:hover": {
-                                                },
-                                            }}>
-                                            <img
-                                                align={"center"}
+                                            <Card
+                                                align={"left"}
+                                                elevation={12}
+                                                name="portfolio_one"
+                                                id="portfolio_one"
+                                                onMouseOver={(event) => { handlePortfolio_one_mouseover(event) }}
+                                                onMouseLeave={(event) => { handlePortfoliomouseleave(event) }}
                                                 sx={{
+                                                    position: "relative",
+                                                    padding: "0em",
+                                                    backgroundColor: theme.palette.portfolio_one.main
+                                                }}>
+                                                <Slide in={portfolio_one_show} style={{ transitionDelay: portfolio_one_show ? '50ms' : '0ms' }}>
 
-                                                }}
-                                                alt="java icon"
-                                                src={portfolio_two}
-                                            />
-                                        </Paper>
+                                                    {<Grid container sx={{
+                                                        backgroundColor: "aqua",
+                                                        backgroundColor: "rgba(0, 0, 0, .75)",
+                                                        position: "absolute",
+                                                        width: "100%",
+                                                        height: "100%",
+                                                    }}>
+                                                        <Grid item xs={12} align="right">
+                                                            {<IconButton color="portfolio" onClick={(event) => { setopendialog({ open: true, Portfolio_Index: 0 }) }} sx={{}}>
+                                                                <LaunchIcon></LaunchIcon>
+                                                            </IconButton>}
+                                                        </Grid>
 
-                                    </Card>
+                                                        <Grid item xs={12} sx={{ padding: "1em" }}>
 
-                                </Grid>
+                                                            <Typography variant="subtitle5" textAlign={"left"} color={theme.palette.portfolio_one.contrastText}>
+                                                                E-Learning course review
+                                                            </Typography>
+                                                            <br></br>
+                                                            <Typography variant="subtitle4" textAlign={"left"} color={theme.palette.portfolio_one.contrastText}>
+                                                                Build this fully responsive review course to make the
+                                                                end user review the course before purchase.
+                                                            </Typography>
 
-                                <Grid item xs={12} sm={6} md={4} >
-
-                                    <Card
-                                        align={"left"}
-                                        elevation={12}
-                                        name="portfolio_two"
-                                        id="portfolio_two"
-                                        onMouseOver={(event) => { handlePortfolio_three_mouseover(event) }}
-                                        onMouseLeave={(event) => { handlePortfoliomouseleave(event) }}
-                                        sx={{
-                                            position: "relative",
-                                            padding: "0em",
-                                            backgroundColor: theme.palette.portfolio_three.main
-                                        }}>
-
-                                        <Slide in={portfolio_three_show} style={{ transitionDelay: portfolio_three_show ? '50ms' : '0ms' }}>
-                                            {<Grid container sx={{
-                                                backgroundColor: "aqua",
-                                                backgroundColor: "rgba(0, 0, 0, .75)",
-                                                position: "absolute",
-                                                width: "100%",
-                                                height: "100%",
-                                            }}>
-                                                <Grid item xs={12} align="right">
-                                                    {<IconButton color="portfolio" onClick={(event) => { setopendialog({ open: true, Portfolio_Index: 2 }) }} sx={{}}>
-                                                        <LaunchIcon></LaunchIcon>
-                                                    </IconButton>}
-                                                </Grid>
-
-                                                <Grid item xs={12} sx={{ padding: "1em" }}>
-
-                                                    <Typography variant="subtitle5" textAlign={"left"} color={theme.palette.portfolio_three.contrastText}>
-                                                        Online Learning website.
-                                                    </Typography>
-                                                    <br></br>
-                                                    <Typography variant="subtitle4" textAlign={"left"} color={theme.palette.portfolio_three.contrastText}>
-                                                        Build this fully responsive Online Learning website that include
-                                                        signup & signin to the website, purchasing a course, etc.
-                                                    </Typography>
-
-                                                </Grid>
+                                                        </Grid>
 
 
-                                            </Grid>}
-                                        </Slide>
+                                                    </Grid>}
 
-                                        <Paper
-                                            align={"center"}
-                                            elevation={2}
-                                            sx={{
-                                                alignContent: "center",
-                                                padding: "2em",
-                                                backgroundColor: theme.palette.portfolio_three.main,
-                                                "&:hover": {
-                                                },
-                                            }}>
-                                            <img
-                                                align={"center"}
+                                                </Slide>
+
+                                                <Paper
+                                                    align={"center"}
+                                                    elevation={2}
+                                                    sx={{
+                                                        alignContent: "center",
+                                                        padding: "2em",
+                                                        backgroundColor: theme.palette.portfolio_one.main,
+                                                        "&:hover": {
+                                                        },
+                                                    }}>
+                                                    <img
+                                                        align={"center"}
+                                                        sx={{
+
+                                                        }}
+                                                        alt="java icon"
+                                                        src={portfolio_one}
+                                                    />
+                                                </Paper>
+
+                                            </Card>
+
+                                        </Grid>
+
+                                        <Grid item xs={12} sm={6} md={4} >
+
+                                            <Card
+                                                align={"left"}
+                                                elevation={12}
+                                                name="portfolio_two"
+                                                id="portfolio_two"
+                                                onMouseOver={(event) => { handlePortfolio_two_mouseover(event) }}
+                                                onMouseLeave={(event) => { handlePortfoliomouseleave(event) }}
                                                 sx={{
+                                                    position: "relative",
+                                                    padding: "0em",
+                                                    backgroundColor: theme.palette.portfolio_two.main
+                                                }}>
+                                                <Slide in={portfolio_two_show} style={{ transitionDelay: portfolio_two_show ? '50ms' : '0ms' }}>
 
-                                                }}
-                                                alt="java icon"
-                                                src={portfolio_three}
-                                            />
-                                        </Paper>
+                                                    {<Grid container sx={{
+                                                        backgroundColor: "aqua",
+                                                        backgroundColor: "rgba(0, 0, 0, .75)",
+                                                        position: "absolute",
+                                                        width: "100%",
+                                                        height: "100%",
+                                                    }}>
+                                                        <Grid item xs={12} align="right">
+                                                            {<IconButton color="portfolio" onClick={(event) => { setopendialog({ open: true, Portfolio_Index: 1 }) }} sx={{}}>
+                                                                <LaunchIcon></LaunchIcon>
+                                                            </IconButton>}
+                                                        </Grid>
 
-                                    </Card>
+                                                        <Grid item xs={12} sx={{ padding: "1em" }}>
 
-                                </Grid>
+                                                            <Typography variant="subtitle5" textAlign={"left"} color={theme.palette.portfolio_two.contrastText}>
+                                                                E-Learning Admin side.
+                                                            </Typography>
+                                                            <br></br>
+                                                            <Typography variant="subtitle4" textAlign={"left"} color={theme.palette.portfolio_two.contrastText}>
+                                                                Build this fully responsive course admin side that include
+                                                                course listing, Editing, Adding etc.
+                                                            </Typography>
+
+                                                        </Grid>
+
+
+                                                    </Grid>}
+
+                                                </Slide>
+                                                <Paper
+                                                    align={"center"}
+                                                    elevation={2}
+                                                    sx={{
+                                                        alignContent: "center",
+                                                        padding: "2em",
+                                                        backgroundColor: theme.palette.portfolio_two.main,
+                                                        "&:hover": {
+                                                        },
+                                                    }}>
+                                                    <img
+                                                        align={"center"}
+                                                        sx={{
+
+                                                        }}
+                                                        alt="java icon"
+                                                        src={portfolio_two}
+                                                    />
+                                                </Paper>
+
+                                            </Card>
+
+                                        </Grid>
+
+                                        <Grid item xs={12} sm={6} md={4} >
+
+                                            <Card
+                                                align={"left"}
+                                                elevation={12}
+                                                name="portfolio_two"
+                                                id="portfolio_two"
+                                                onMouseOver={(event) => { handlePortfolio_three_mouseover(event) }}
+                                                onMouseLeave={(event) => { handlePortfoliomouseleave(event) }}
+                                                sx={{
+                                                    position: "relative",
+                                                    padding: "0em",
+                                                    backgroundColor: theme.palette.portfolio_three.main
+                                                }}>
+
+                                                <Slide in={portfolio_three_show} style={{ transitionDelay: portfolio_three_show ? '50ms' : '0ms' }}>
+                                                    {<Grid container sx={{
+                                                        backgroundColor: "aqua",
+                                                        backgroundColor: "rgba(0, 0, 0, .75)",
+                                                        position: "absolute",
+                                                        width: "100%",
+                                                        height: "100%",
+                                                    }}>
+                                                        <Grid item xs={12} align="right">
+                                                            {<IconButton color="portfolio" onClick={(event) => { setopendialog({ open: true, Portfolio_Index: 2 }) }} sx={{}}>
+                                                                <LaunchIcon></LaunchIcon>
+                                                            </IconButton>}
+                                                        </Grid>
+
+                                                        <Grid item xs={12} sx={{ padding: "1em" }}>
+
+                                                            <Typography variant="subtitle5" textAlign={"left"} color={theme.palette.portfolio_three.contrastText}>
+                                                                Online Learning website.
+                                                            </Typography>
+                                                            <br></br>
+                                                            <Typography variant="subtitle4" textAlign={"left"} color={theme.palette.portfolio_three.contrastText}>
+                                                                Build this fully responsive Online Learning website that include
+                                                                signup & signin to the website, purchasing a course, etc.
+                                                            </Typography>
+
+                                                        </Grid>
+
+
+                                                    </Grid>}
+                                                </Slide>
+
+                                                <Paper
+                                                    align={"center"}
+                                                    elevation={2}
+                                                    sx={{
+                                                        alignContent: "center",
+                                                        padding: "2em",
+                                                        backgroundColor: theme.palette.portfolio_three.main,
+                                                        "&:hover": {
+                                                        },
+                                                    }}>
+                                                    <img
+                                                        align={"center"}
+                                                        sx={{
+
+                                                        }}
+                                                        alt="java icon"
+                                                        src={portfolio_three}
+                                                    />
+                                                </Paper>
+
+                                            </Card>
+
+                                        </Grid>
+
+                                        <Grid item xs={12} sm={6} md={4} >
+
+                                            <Card
+                                                align={"left"}
+                                                elevation={12}
+                                                name="portfolio_two"
+                                                id="portfolio_two"
+                                                onMouseOver={(event) => { handlePortfolio_four_mouseover(event) }}
+                                                onMouseLeave={(event) => { handlePortfoliomouseleave(event) }}
+                                                sx={{
+                                                    position: "relative",
+                                                    padding: "0em",
+                                                    backgroundColor: theme.palette.portfolio_four.main
+                                                }}>
+
+                                                <Slide in={portfolio_four_show} style={{ transitionDelay: portfolio_four_show ? '50ms' : '0ms' }}>
+                                                    {<Grid container sx={{
+                                                        backgroundColor: "aqua",
+                                                        backgroundColor: "rgba(0, 0, 0, .75)",
+                                                        position: "absolute",
+                                                        width: "100%",
+                                                        height: "100%",
+                                                    }}>
+                                                        <Grid item xs={12} align="right">
+                                                            {<IconButton color="portfolio" onClick={(event) => { setopendialog({ open: true, Portfolio_Index: 3 }) }} sx={{}}>
+                                                                <LaunchIcon></LaunchIcon>
+                                                            </IconButton>}
+                                                        </Grid>
+
+                                                        <Grid item xs={12} sx={{ padding: "1em" }}>
+
+                                                            <Typography variant="subtitle5" textAlign={"left"} color={theme.palette.portfolio_four.contrastText}>
+                                                                Grading system
+                                                            </Typography>
+                                                            <br></br>
+                                                            <Typography variant="subtitle4" textAlign={"left"} color={theme.palette.portfolio_four.contrastText}>
+                                                                Build this fully responsive Online Learning website that include
+                                                                signup & signin to the website, purchasing a course, etc.
+                                                            </Typography>
+
+                                                        </Grid>
+
+
+                                                    </Grid>}
+                                                </Slide>
+
+                                                <Paper
+                                                    align={"center"}
+                                                    elevation={2}
+                                                    sx={{
+                                                        alignContent: "center",
+                                                        padding: "2em",
+                                                        backgroundColor: theme.palette.portfolio_four.main,
+                                                        "&:hover": {
+                                                        },
+                                                    }}>
+                                                    <img
+                                                        align={"center"}
+                                                        sx={{
+
+                                                        }}
+                                                        alt="java icon"
+                                                        src={portfolio_four}
+                                                    />
+                                                </Paper>
+
+                                            </Card>
+
+                                        </Grid>
+
+                                        <Grid item xs={12} sm={6} md={4} >
+
+                                            <Card
+                                                align={"left"}
+                                                elevation={12}
+                                                name="portfolio_two"
+                                                id="portfolio_two"
+                                                onMouseOver={(event) => { handlePortfolio_five_mouseover(event) }}
+                                                onMouseLeave={(event) => { handlePortfoliomouseleave(event) }}
+                                                sx={{
+                                                    position: "relative",
+                                                    padding: "0em",
+                                                    backgroundColor: theme.palette.portfolio_three.main
+                                                }}>
+
+                                                <Slide in={portfolio_five_show} style={{ transitionDelay: portfolio_five_show ? '50ms' : '0ms' }}>
+                                                    {<Grid container sx={{
+                                                        backgroundColor: "aqua",
+                                                        backgroundColor: "rgba(0, 0, 0, .75)",
+                                                        position: "absolute",
+                                                        width: "100%",
+                                                        height: "100%",
+                                                    }}>
+                                                        <Grid item xs={12} align="right">
+                                                            {<IconButton color="portfolio" onClick={(event) => { setopendialog({ open: true, Portfolio_Index: 2 }) }} sx={{}}>
+                                                                <LaunchIcon></LaunchIcon>
+                                                            </IconButton>}
+                                                        </Grid>
+
+                                                        <Grid item xs={12} sx={{ padding: "1em" }}>
+
+                                                            <Typography variant="subtitle5" textAlign={"left"} color={theme.palette.portfolio_three.contrastText}>
+                                                                Online Learning website.
+                                                            </Typography>
+                                                            <br></br>
+                                                            <Typography variant="subtitle4" textAlign={"left"} color={theme.palette.portfolio_three.contrastText}>
+                                                                Build this fully responsive Online Learning website that include
+                                                                signup & signin to the website, purchasing a course, etc.
+                                                            </Typography>
+
+                                                        </Grid>
+
+
+                                                    </Grid>}
+                                                </Slide>
+
+                                                <Paper
+                                                    align={"center"}
+                                                    elevation={2}
+                                                    sx={{
+                                                        alignContent: "center",
+                                                        padding: "2em",
+                                                        backgroundColor: theme.palette.portfolio_three.main,
+                                                        "&:hover": {
+                                                        },
+                                                    }}>
+                                                    <img
+                                                        align={"center"}
+                                                        sx={{
+
+                                                        }}
+                                                        alt="java icon"
+                                                        src={portfolio_three}
+                                                    />
+                                                </Paper>
+
+                                            </Card>
+
+                                        </Grid>
+
+                                    </Grid>
+
+                                </CustomTabPanel>
+
+
+                                <CustomTabPanel value={portfolio_tab_Value} index={1}>
+                                    <Grid container direction="row" justifyContent="center" alignItems="center" columnSpacing={2} rowSpacing={2} >
+
+                                        <Grid item xs={12} sm={12} md={12} >
+
+                                            <Card
+                                                align={"left"}
+                                                elevation={12}
+                                                name="portfolio_one"
+                                                id="portfolio_one"
+                                                onMouseOver={(event) => { handlePortfolio_one_mouseover(event) }}
+                                                onMouseLeave={(event) => { handlePortfoliomouseleave(event) }}
+                                                sx={{
+                                                    position: "relative",
+                                                    padding: "0em",
+                                                    backgroundColor: theme.palette.portfolio_Game_one.main
+                                                }}>
+                                                <Slide in={portfolio_one_show} style={{ transitionDelay: portfolio_one_show ? '50ms' : '0ms' }}>
+
+                                                    {<Grid container sx={{
+                                                        backgroundColor: "aqua",
+                                                        backgroundColor: "rgba(0, 0, 0, .75)",
+                                                        position: "absolute",
+                                                        width: "100%",
+                                                        height: "100%",
+                                                    }}>
+                                                        <Grid item xs={12} align="right">
+                                                            {<IconButton color="portfolio" onClick={(event) => { setopen_gamedialog({ open: true, Portfolio_Index: 0 }) }} sx={{}}>
+                                                                <LaunchIcon></LaunchIcon>
+                                                            </IconButton>}
+                                                        </Grid>
+
+                                                        <Grid item xs={12} sx={{ padding: "1em" }}>
+
+                                                            <Typography variant="subtitle5" textAlign={"left"} color={theme.palette.portfolio_one.contrastText}>
+                                                                RPG Game
+                                                            </Typography>
+                                                            <br></br>
+                                                            <Typography variant="subtitle4" textAlign={"left"} color={theme.palette.portfolio_one.contrastText}>
+                                                                Build this Game as a personal project, that takes at a medieval times, player play as a savior from the local lord.
+                                                            </Typography>
+
+                                                        </Grid>
+
+
+                                                    </Grid>}
+
+                                                </Slide>
+
+                                                <Paper
+                                                    align={"center"}
+                                                    elevation={2}
+                                                    sx={{
+                                                        alignContent: "center",
+                                                        padding: "2em",
+                                                        backgroundColor: theme.palette.portfolio_Game_one.main,
+                                                        "&:hover": {
+                                                        },
+                                                    }}>
+                                                    <img
+                                                        align={"center"}
+                                                        sx={{
+
+                                                        }}
+                                                        alt="java icon"
+                                                        src={portfolio_one}
+                                                    />
+                                                </Paper>
+
+                                            </Card>
+
+                                        </Grid>
+
+
+                                    </Grid>
+
+                                </CustomTabPanel>
+
+
+                                <CustomTabPanel value={portfolio_tab_Value} index={2}>
+
+                                    <Grid container direction="row" justifyContent="center" alignItems="center" columnSpacing={2} rowSpacing={2} >
+
+                                        <Grid item xs={12} sm={6} md={6} >
+
+                                            <Card
+                                                align={"left"}
+                                                elevation={12}
+                                                name="portfolio_one"
+                                                id="portfolio_one"
+                                                onMouseOver={(event) => { handlePortfolio_one_mouseover(event) }}
+                                                onMouseLeave={(event) => { handlePortfoliomouseleave(event) }}
+                                                sx={{
+                                                    position: "relative",
+                                                    padding: "0em",
+                                                    backgroundColor: theme.palette.portfolio_EA_one.main
+                                                }}>
+                                                <Slide in={portfolio_one_show} style={{ transitionDelay: portfolio_one_show ? '50ms' : '0ms' }}>
+
+                                                    {<Grid container sx={{
+                                                        backgroundColor: "aqua",
+                                                        backgroundColor: "rgba(0, 0, 0, .75)",
+                                                        position: "absolute",
+                                                        width: "100%",
+                                                        height: "100%",
+                                                    }}>
+                                                        <Grid item xs={12} align="right">
+                                                            {<IconButton color="portfolio" onClick={(event) => { setopen_EAdialog({ open: true, Portfolio_Index: 0 }) }} sx={{}}>
+                                                                <LaunchIcon></LaunchIcon>
+                                                            </IconButton>}
+                                                        </Grid>
+
+                                                        <Grid item xs={12} sx={{ padding: "1em" }}>
+
+                                                            <Typography variant="subtitle5" textAlign={"left"} color={theme.palette.portfolio_one.contrastText}>
+                                                                Bollinger Bands Based EA
+                                                            </Typography>
+                                                            <br></br>
+                                                            <Typography variant="subtitle4" textAlign={"left"} color={theme.palette.portfolio_one.contrastText}>
+                                                                Expert Advisor that Enter, Exit and Manages risks based on Bollinger Bands Indiator.
+                                                            </Typography>
+
+                                                        </Grid>
+
+
+                                                    </Grid>}
+
+                                                </Slide>
+
+                                                <Paper
+                                                    align={"center"}
+                                                    elevation={2}
+                                                    sx={{
+                                                        alignContent: "center",
+                                                        padding: "2em",
+                                                        backgroundColor: theme.palette.portfolio_EA_one.main,
+                                                        "&:hover": {
+                                                        },
+                                                    }}>
+                                                    <img
+                                                        align={"center"}
+                                                        sx={{
+
+                                                        }}
+                                                        alt="java icon"
+                                                        src={portfolio_EA_one}
+                                                    />
+                                                </Paper>
+
+                                            </Card>
+
+                                        </Grid>
+
+                                        <Grid item xs={12} sm={6} md={6} >
+
+                                            <Card
+                                                align={"left"}
+                                                elevation={12}
+                                                name="portfolio_two"
+                                                id="portfolio_two"
+                                                onMouseOver={(event) => { handlePortfolio_two_mouseover(event) }}
+                                                onMouseLeave={(event) => { handlePortfoliomouseleave(event) }}
+                                                sx={{
+                                                    position: "relative",
+                                                    padding: "0em",
+                                                    backgroundColor: theme.palette.portfolio_EA_two.main
+                                                }}>
+                                                <Slide in={portfolio_two_show} style={{ transitionDelay: portfolio_two_show ? '50ms' : '0ms' }}>
+
+                                                    {<Grid container sx={{
+                                                        backgroundColor: "aqua",
+                                                        backgroundColor: "rgba(0, 0, 0, .75)",
+                                                        position: "absolute",
+                                                        width: "100%",
+                                                        height: "100%",
+                                                    }}>
+                                                        <Grid item xs={12} align="right">
+                                                            {<IconButton color="portfolio" onClick={(event) => { setopen_EAdialog({ open: true, Portfolio_Index: 1 }) }} sx={{}}>
+                                                                <LaunchIcon></LaunchIcon>
+                                                            </IconButton>}
+                                                        </Grid>
+
+                                                        <Grid item xs={12} sx={{ padding: "1em" }}>
+
+                                                            <Typography variant="subtitle5" textAlign={"left"} color={theme.palette.portfolio_two.contrastText}>
+                                                                Order Flow Indicator
+                                                            </Typography>
+                                                            <br></br>
+                                                            <Typography variant="subtitle4" textAlign={"left"} color={theme.palette.portfolio_two.contrastText}>
+                                                                This EA stores the Type orders, the time the order is executed, the amounts of the the order
+                                                                and the type of the order in a file.
+                                                            </Typography>
+
+                                                        </Grid>
+
+
+                                                    </Grid>}
+
+                                                </Slide>
+
+                                                <Paper
+                                                    align={"center"}
+                                                    elevation={2}
+                                                    sx={{
+                                                        alignContent: "center",
+                                                        padding: "2em",
+                                                        backgroundColor: theme.palette.portfolio_EA_two.main,
+                                                        "&:hover": {
+                                                        },
+                                                    }}>
+                                                    <img
+                                                        align={"center"}
+                                                        sx={{
+
+                                                        }}
+                                                        alt="java icon"
+                                                        src={portfolio_EA_two}
+                                                    />
+                                                </Paper>
+
+                                            </Card>
+
+                                        </Grid>
+
+                                    </Grid>
+
+                                </CustomTabPanel>
+
 
                             </Grid>
 
@@ -2572,8 +3132,9 @@ function LandingPage(props) {
 
                 </Grid >
 
-            </Grid >
+            </Grid>
 
+            {/* website Dialog */}
             <BootstrapDialog
                 fullWidth={true}
                 maxWidth={"lg"}
@@ -2598,7 +3159,7 @@ function LandingPage(props) {
                                         padding: "1em",
                                         margin: "1em",
                                         borderRadius: "1em",
-                                        backgroundColor: opendialog.Portfolio_Index === 0 ? theme.palette.portfolio_one.main : opendialog.Portfolio_Index === 1 ? theme.palette.portfolio_two.main : theme.palette.portfolio_three.main,
+                                        backgroundColor: opendialog.Portfolio_Index === 0 ? theme.palette.portfolio_one.main : opendialog.Portfolio_Index === 1 ? theme.palette.portfolio_two.main : opendialog.Portfolio_Index === 2 ? theme.palette.portfolio_three.main : theme.palette.portfolio_four.main,
                                         "&:hover": {
                                         },
                                     }}>
@@ -2675,6 +3236,180 @@ function LandingPage(props) {
 
             </BootstrapDialog>
 
+            {/* Game Dialog */}
+            <BootstrapDialog
+                fullWidth={true}
+                maxWidth={"lg"}
+                onClose={handleDialogClose}
+                aria-labelledby="customized-dialog-title"
+                open={open_gamedialog.open}
+                color="portfolio_one"
+            >
+
+
+                <DialogContent dividers color={"portfolio_one"}>
+
+
+                    <Card sx={{ display: 'flex', maxWidth: "100%", backgroundColor: theme.palette.Dialog.main }}>
+
+                        <Grid container>
+
+                            <Grid item xs={12} md={8}>
+                                <Paper
+                                    align={"center"}
+                                    elevation={12}
+                                    sx={{
+                                        alignContent: "center",
+                                        padding: "1em",
+                                        margin: "1em",
+                                        borderRadius: "1em",
+                                        backgroundColor: theme.palette.portfolio_Game_one.main,
+                                        "&:hover": {
+                                        },
+                                    }}>
+
+                                    <CardMedia
+                                        component="img"
+                                        elevation={12}
+                                        sx={{ maxWidth: "700px", minWidth: "250px", ...theme.palette.Dialog_shadows }}
+                                        image={Game_portfolio[open_gamedialog.Portfolio_Index].portfolio_image}
+                                        alt="portfolio_image"
+                                    />
+                                </Paper>
+                            </Grid>
+
+                            <Grid item xs={12} md={4}>
+
+                                <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+
+                                    <Box sx={{ display: 'flex', alignItems: 'center', ml: "auto", pb: "0em" }}>
+
+                                        {!matchesMD && <IconButton aria-label="next"
+                                            sx={{
+                                                margin: "6px",
+                                                border: "1px solid",
+                                                ...theme.palette.Dialog_shadows
+                                            }}
+                                            autoFocus onClick={handleDialogClose}>
+                                            <CloseIcon />
+                                        </IconButton>}
+
+                                    </Box>
+
+                                    <CardContent sx={{ flex: '1 0 auto', padding: "1em", paddingTop: "0em" }}>
+
+                                        <Typography variant="h3" align={"center"} sx={{ marginBottom: "0em" }}>
+                                            {Game_portfolio[open_gamedialog.Portfolio_Index].title}
+                                        </Typography>
+                                        <Typography variant="subtitle5" >
+                                            {Game_portfolio[open_gamedialog.Portfolio_Index].message}
+                                        </Typography>
+                                        <br></br>
+
+                                    </CardContent>
+
+
+                                </Box>
+
+                            </Grid>
+
+                        </Grid>
+
+                    </Card>
+
+
+                </DialogContent>
+
+            </BootstrapDialog>
+
+            {/* EA Dialog */}
+            <BootstrapDialog
+                fullWidth={true}
+                maxWidth={"lg"}
+                onClose={handleDialogClose}
+                aria-labelledby="customized-dialog-title"
+                open={open_EAdialog.open}
+                color="portfolio_one"
+            >
+
+
+                <DialogContent dividers color={"portfolio_one"}>
+
+
+                    <Card sx={{ display: 'flex', maxWidth: "100%", backgroundColor: theme.palette.Dialog.main }}>
+
+                        <Grid container>
+
+                            <Grid item xs={12} md={8}>
+                                <Paper
+                                    align={"center"}
+                                    elevation={12}
+                                    sx={{
+                                        alignContent: "center",
+                                        padding: "1em",
+                                        margin: "1em",
+                                        borderRadius: "1em",
+                                        backgroundColor: open_EAdialog.Portfolio_Index === 0 ? theme.palette.portfolio_EA_one.main : theme.palette.portfolio_EA_two.main,
+                                        "&:hover": {
+                                        },
+                                    }}>
+
+                                    <CardMedia
+                                        component="img"
+                                        elevation={12}
+                                        sx={{ maxWidth: "700px", minWidth: "250px", ...theme.palette.Dialog_shadows }}
+                                        image={EA_portfolio[open_EAdialog.Portfolio_Index].portfolio_image}
+                                        alt="portfolio_image"
+                                    />
+                                </Paper>
+                            </Grid>
+
+                            <Grid item xs={12} md={4}>
+
+                                <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+
+                                    <Box sx={{ display: 'flex', alignItems: 'center', ml: "auto", pb: "0em" }}>
+
+                                        {!matchesMD && <IconButton aria-label="next"
+                                            sx={{
+                                                margin: "6px",
+                                                border: "1px solid",
+                                                ...theme.palette.Dialog_shadows
+                                            }}
+                                            autoFocus onClick={handleDialogClose}>
+                                            <CloseIcon />
+                                        </IconButton>}
+
+                                    </Box>
+
+                                    <CardContent sx={{ flex: '1 0 auto', padding: "1em", paddingTop: "0em" }}>
+
+                                        <Typography variant="h3" align={"center"} sx={{ marginBottom: "0em" }}>
+                                            {EA_portfolio[open_EAdialog.Portfolio_Index].title}
+                                        </Typography>
+                                        <Typography variant="subtitle5" >
+                                            {EA_portfolio[open_EAdialog.Portfolio_Index].message}
+                                        </Typography>
+                                        <br></br>
+
+                                    </CardContent>
+
+
+                                </Box>
+
+                            </Grid>
+
+                        </Grid>
+
+                    </Card>
+
+
+                </DialogContent>
+
+            </BootstrapDialog>
+
+
+
             <Snackbar
                 anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
                 open={open_contactme_success}
@@ -2721,7 +3456,5 @@ function LandingPage(props) {
 };
 
 export default LandingPage;
-
-
 
 

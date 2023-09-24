@@ -20,7 +20,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { styled, useTheme } from '@mui/material/styles';
 import * as React from 'react';
-
+import { useMediaQuery } from '@mui/material';
 
 const StyledTabs = styled((props) => <Tabs
     {...props}
@@ -68,6 +68,9 @@ function Header(props) {
     const [mobileOpen, setMobileOpen] = React.useState(false);
 
     const theme = useTheme();
+    const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
+    const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
+    const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
 
     const toggleColorMode = () => {
         if (theme.palette.mode === 'light') {
@@ -140,9 +143,77 @@ function Header(props) {
     const container = window !== undefined ? () => window().document.body : undefined;
 
     return (
-        <Box sx={{ display: 'flex', minWidth: "375px" }}>
+        <Box alignItems={"center"} justifyContent="center" sx={{ minWidth: "375px", display: 'flex', zIndex: (theme) => theme.zIndex.drawer + 1 }}>
 
-            <AppBar component="nav" color="primary" position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
+            <Box sx={{
+                position: "fixed",
+                zIndex: (theme) => theme.zIndex.drawer + 1,
+                display: { xs: 'block', md: 'block' },
+
+            }}>
+
+                <Grid container>
+
+                    {!matchesMD && <Grid item xs={10} sx={{
+
+                        backgroundColor: theme.palette.float_header.main,
+                        borderRadius: "1em",
+                        display: { xs: 'none', md: 'block' },
+                    }}>
+                        <Box>
+
+                            <StyledTabs
+                                value={navvalue.currentValue}
+                                onChange={handleChange}
+                                aria-label="styled"
+                                variant="scrollable"
+                                scrollButtons={true}
+                            >
+                                {navItems.map((item, index) => (
+                                    <StyledTab key={item} label={item} onClick={(event) => { settabclicked(true) }} />
+                                ))}
+                            </StyledTabs>
+
+                        </Box>
+
+                    </Grid>}
+
+                    <Grid item xs={matchesMD ? 4 : 1} sx={{ mr: matchesMD ? "5px" : "0", marginLeft: matchesMD ? "2em" : "auto", backgroundColor: theme.palette.float_header.main, borderRadius: "1em", }}>
+
+                        <Box >
+
+                            <IconButton sx={{ marginLeft: matchesMD ? "auto" : "15px", display: { xs: 'block', md: 'block' } }} onClick={toggleColorMode} color="inherit">
+                                {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
+                            </IconButton>
+
+                        </Box>
+                    </Grid>
+
+                    {matchesMD && <Grid item xs={4} sx={{ backgroundColor: theme.palette.float_header.main, borderRadius: "1em", padding: "0em" }}>
+
+                        <Box >
+
+                            {<IconButton
+                                color="inherit"
+                                aria-label="open drawer"
+                                edge="start"
+                                onClick={handleDrawerToggle}
+                                sx={{ display: { md: 'none' }, marginLeft: "auto" }}
+
+                            >
+                                {!mobileOpen ? <MenuIcon /> : <CloseIcon />}
+                            </IconButton>}
+                        </Box>
+                    </Grid>}
+
+                </Grid>
+
+
+            </Box>
+
+
+            {/* 
+            <AppBar component="nav" color="primary" position="fixed" sx={{ maxWidth: "40em",zIndex: (theme) => theme.zIndex.drawer + 1 }}>
 
                 <Toolbar color={"primary"}>
 
@@ -186,7 +257,7 @@ function Header(props) {
 
                 </Toolbar>
 
-            </AppBar>
+            </AppBar> */}
 
             <nav>
                 <Drawer
@@ -213,7 +284,7 @@ function Header(props) {
             }}>
             </Box>
 
-        </Box>
+        </Box >
 
     );
 }

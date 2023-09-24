@@ -81,7 +81,10 @@ function App(props) {
 
       <CssBaseline>
 
-        {!waitloading && <Box className="grandparent" onScroll={(event) => { handlescroll(event) }} sx={{ minWidth: "375px", }}>
+        {!waitloading && <Box className="grandparent" onScroll={(event) => { handlescroll(event) }}
+          sx={{
+            minWidth: "375px",
+          }}>
 
           <BrowserRouter>
 
@@ -92,6 +95,7 @@ function App(props) {
               sx={{
                 flexGrow: 1,
               }}
+
             >
 
               <Routes>
@@ -122,11 +126,12 @@ function App(props) {
           <Grid container justifyContent={"center"} alignItems={"center"} >
             <CircularProgress color="inherit" sx={{ height: "20em" }} />
           </Grid>
-        </Box>}
+        </Box>
+        }
 
-      </CssBaseline>
+      </CssBaseline >
 
-    </ThemeProvider>
+    </ThemeProvider >
   );
 }
 

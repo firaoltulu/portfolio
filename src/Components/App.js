@@ -72,8 +72,7 @@ function App(props) {
 
   }, [mode]);
 
-  const handlescroll = (event) => {
-  }
+
 
 
   return (
@@ -81,7 +80,7 @@ function App(props) {
 
       <CssBaseline>
 
-        {!waitloading && <Box className="grandparent" onScroll={(event) => { handlescroll(event) }}
+        {!waitloading && <Box className="grandparent"
           sx={{
             minWidth: "375px",
           }}>
@@ -95,7 +94,6 @@ function App(props) {
               sx={{
                 flexGrow: 1,
               }}
-
             >
 
               <Routes>

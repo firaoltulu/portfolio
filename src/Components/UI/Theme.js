@@ -1,5 +1,8 @@
 import { createTheme } from '@mui/material/styles';
 
+
+const certifications_color = "#9c9c9c";
+const contact_video_card_color = "#808080";
 const portfolio_four_color = "#252c8b";
 const portfolio_Game_one_color = "#670303";
 const portfolio_EA_two_color = "#7a7e04";
@@ -246,6 +249,19 @@ export default createTheme({
             dark: "#7b1fa2",
             contrastText: "#ffffff"
         },
+        contact_video_card: {
+            main: contact_video_card_color,
+            light: "#ba68c8",
+            dark: "#7b1fa2",
+            contrastText: "#ffffff"
+        },
+        certifications: {
+            main: certifications_color,
+            light: "#ba68c8",
+            dark: "#7b1fa2",
+            contrastText: "#ffffff"
+        }
+
 
 
     },

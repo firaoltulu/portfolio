@@ -58,7 +58,7 @@ const StyledTab = styled((props) => <Tab disableRipple {...props} />)(({ theme }
 );
 
 const drawerWidth = "100%";
-const navItems = ['  Home  ', 'Services ', '  About ', '  Skills ', 'Experience', 'Testimonials', 'portfolio', 'Contact '];
+const navItems = ['  Home  ', 'Services ', '  About ', '  Skills ', 'Experience', 'Testimonials', 'portfolio', 'Licenses', 'Contact '];
 
 
 function Header(props) {

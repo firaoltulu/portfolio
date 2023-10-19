@@ -1,3 +1,4 @@
+import emailjs from '@emailjs/browser';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import CloseIcon from '@mui/icons-material/Close';
@@ -13,6 +14,7 @@ import {
     CardMedia,
     Dialog,
     DialogContent,
+    Divider,
     Fade,
     Grid, IconButton, LinearProgress, Pagination, Paper, Slide, Snackbar, Tab, Tabs, TextField,
     Typography,
@@ -20,10 +22,12 @@ import {
 } from "@mui/material";
 import { styled, useTheme } from '@mui/material/styles';
 import React, { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { TypeAnimation } from 'react-type-animation';
-import emailjs from '@emailjs/browser';
+import { Card as joyjoyCard } from '@mui/joy/Card';
+import { CardCover as joyjoyCardCover } from '@mui/joy/CardCover';
+// import { CardContent as joyCardContent } from '@mui/joy/CardContent';
 
+import ReactPlayer from 'react-player';
 
 import bootstrapicon from "../Assets/bootstrapicon.png";
 import cicon from "../Assets/c#icon.png";
@@ -33,10 +37,18 @@ import javaicon from "../Assets/javaicon.png";
 import javascripticon from "../Assets/javascripticon.png";
 import materialuiicon from "../Assets/materialuiicon.png";
 import mongodbicon from "../Assets/mongodbicon.png";
+import myphoto_one from "../Assets/myphoto_one.png";
+import myphoto_two from "../Assets/myphoto_two.png";
 import mysqlicon from "../Assets/mysqlicon.png";
 import netframeworkicon from "../Assets/netframeworkicon.png";
 import nodejsicon from "../Assets/nodejsicon.png";
 import phpicon from "../Assets/phpicon.png";
+import portfolio_EA_one from "../Assets/portfolio_EA_one.png";
+import portfolio_EA_one_big from "../Assets/portfolio_EA_one_big.png";
+import portfolio_EA_two from "../Assets/portfolio_EA_two.jpg";
+import portfolio_EA_two_big from "../Assets/portfolio_EA_two_big.jpg";
+import portfolio_four from "../Assets/portfolio_four.png";
+import portfolio_four_big from "../Assets/portfolio_four_big.png";
 import portfolio_one from "../Assets/portfolio_one.png";
 import portfolio_one_big from "../Assets/portfolio_one_big.png";
 import portfolio_three from "../Assets/portfolio_three.png";
@@ -45,14 +57,12 @@ import portfolio_two from "../Assets/portfolio_two.png";
 import portfolio_two_big from "../Assets/portfolio_two_big.png";
 import pythonicon from "../Assets/pythonicon.png";
 import reacticon from "../Assets/reacticon.png";
-import myphoto_one from "../Assets/myphoto_one.png";
-import myphoto_two from "../Assets/myphoto_two.png";
-import portfolio_EA_one_big from "../Assets/portfolio_EA_one_big.png";
-import portfolio_EA_one from "../Assets/portfolio_EA_one.png";
-import portfolio_EA_two from "../Assets/portfolio_EA_two.jpg";
-import portfolio_EA_two_big from "../Assets/portfolio_EA_two_big.jpg";
-import portfolio_four from "../Assets/portfolio_four.png";
-import portfolio_four_big from "../Assets/portfolio_four_big.png";
+import firaolMediaCover from './Joycomponet';
+import portfolio_video_one from "../Assets/portfolio_video_one.mp4";
+import googleicon from "../Assets/googleicon.png";
+import metaicon from "../Assets/metaicon.png";
+import certificateone from "../Assets/certificateone.png";
+import certificatetwo from "../Assets/certificatetwo.png";
 
 const Testimonials = [
     {
@@ -299,6 +309,7 @@ function LandingPage(props) {
     const experienceref = useRef(null);
     const Testimonialsref = useRef(null);
     const Portfolio_cardref = useRef(null);
+    const Licensesref = useRef(null);
     const contactone_ref = useRef(null);
 
 
@@ -338,6 +349,7 @@ function LandingPage(props) {
     const [experienceslide, setexperienceslide] = React.useState(false);
     const [testimonialslide, settestimonialslide] = React.useState(false);
     const [portfolioslide, setportfolioslide] = React.useState(false);
+    const [Licensesslide, setLicensesslide] = React.useState(false);
     const [contactlastslide, setcontactlastslide] = React.useState(false);
 
     const [checkingif, setcheckingif] = React.useState({});
@@ -391,6 +403,7 @@ function LandingPage(props) {
     const experienceinview = useIsInViewport(experienceref);
     const Testimonialinview = useIsInViewport(Testimonialsref);
     const portfolioinview = useIsInViewport(Portfolio_cardref);
+    const Licensesinview = useIsInViewport(Licensesref);
     const contactlastinview = useIsInViewport(contactone_ref);
 
     React.useEffect(() => {
@@ -447,6 +460,13 @@ function LandingPage(props) {
         }
         else if (navvalue.currentValue === 7) {
             window.scrollTo({
+                top: Licensesref.current.offsetTop,
+                left: 0,
+                behavior: "smooth",
+            });
+        }
+        else if (navvalue.currentValue === 8) {
+            window.scrollTo({
                 top: contactone_ref.current.offsetTop,
                 left: 0,
                 behavior: "smooth",
@@ -470,6 +490,7 @@ function LandingPage(props) {
                 setexperienceslide(false);
                 settestimonialslide(false);
                 setportfolioslide(false);
+                setLicensesslide(false);
                 setcontactlastslide(false);
 
             }
@@ -481,6 +502,7 @@ function LandingPage(props) {
                 setexperienceslide(false);
                 settestimonialslide(false);
                 setportfolioslide(false);
+                setLicensesslide(false);
                 setcontactlastslide(false);
             }
             else if (aboutinview) {
@@ -491,6 +513,7 @@ function LandingPage(props) {
                 setexperienceslide(false);
                 settestimonialslide(false);
                 setportfolioslide(false);
+                setLicensesslide(false);
                 setcontactlastslide(false);
             }
             else if (skillinview) {
@@ -501,6 +524,7 @@ function LandingPage(props) {
                 setexperienceslide(false);
                 settestimonialslide(false);
                 setportfolioslide(false);
+                setLicensesslide(false);
                 setcontactlastslide(false);
             }
             else if (experienceinview) {
@@ -511,6 +535,7 @@ function LandingPage(props) {
                 setskillslide(false);
                 settestimonialslide(false);
                 setportfolioslide(false);
+                setLicensesslide(false);
                 setcontactlastslide(false);
             }
             else if (Testimonialinview) {
@@ -521,6 +546,7 @@ function LandingPage(props) {
                 setskillslide(false);
                 setexperienceslide(false);
                 setportfolioslide(false);
+                setLicensesslide(false);
                 setcontactlastslide(false);
             }
             else if (portfolioinview) {
@@ -531,7 +557,19 @@ function LandingPage(props) {
                 setskillslide(false);
                 setexperienceslide(false);
                 settestimonialslide(false);
+                setLicensesslide(false);
                 setcontactlastslide(false);
+            }
+            else if (Licensesinview) {
+                setLicensesslide(true);
+                setcontactlastslide(false);
+                setcontactslide(false);
+                setserviceslide(false);
+                setaboutslide(false);
+                setskillslide(false);
+                setexperienceslide(false);
+                settestimonialslide(false);
+                setportfolioslide(false);
             }
             else if (contactlastinview) {
                 setcontactlastslide(true);
@@ -542,6 +580,7 @@ function LandingPage(props) {
                 setexperienceslide(false);
                 settestimonialslide(false);
                 setportfolioslide(false);
+                setLicensesslide(false);
             }
             else {
 
@@ -552,6 +591,7 @@ function LandingPage(props) {
                 setexperienceslide(false);
                 settestimonialslide(false);
                 setportfolioslide(false);
+                setLicensesslide(false);
                 setcontactlastslide(false);
             }
 
@@ -559,7 +599,7 @@ function LandingPage(props) {
 
         }
 
-    }, [contactinview, serviceinview, aboutinview, skillinview, experienceinview, Testimonialinview, portfolioinview, contactlastinview]);
+    }, [contactinview, serviceinview, aboutinview, skillinview, experienceinview, Testimonialinview, portfolioinview, Licensesinview, contactlastinview]);
 
 
     // React.useEffect(() => {
@@ -975,208 +1015,523 @@ function LandingPage(props) {
                         direction="row"
                         sx={{
                             padding: "1em",
-                            paddingTop: "5em",
+                            paddingTop: "4em",
                             paddingBottom: "5em"
                         }}
                     >
 
-                        {matchesSM && <Fade in={contactslide}>
+                        <Grid item xs={12} sx={{
+                            // border: "1px solid",
+                            // borderRadius: "5px",
+                            padding: "0em",
+                            // paddingTop: "2em",
+                            // paddingBottom: "2em"
+                        }}>
+                            <Grid container>
 
-                            {<Grid item xs={12} sm={6} md={6}
-                                sx={{
-                                    [theme.breakpoints.down("sm")]: {
-                                        Width: "100%",
-                                        marginBottom: "1em",
-                                    },
+                                {matchesSM &&
+                                    <Grid item xs={12} sm={6} md={6}
+                                        sx={{
+                                            [theme.breakpoints.down("sm")]: {
+                                                Width: "100%",
+                                                marginBottom: "1em",
+                                            },
+                                        }}>
 
-                                }}>
-
-                                {<Card
-                                    sx={{
-                                        borderRadius: "4em",
-                                        padding: "1em",
-                                        position: "relative",
-                                        animationName: "animat2",
-                                        animationDuration: "4s",
-                                        animationIterationCount: "infinite",
-
-                                        "@keyframes animat2": {
-                                            "0%": { left: "0px", top: "0px" },
-                                            "50%": { left: "0px", top: "-20px" },
-                                            "100%": { left: "0px", top: "0px" },
-                                        }
-                                    }}>
-                                    <CardMedia
-                                        component="img"
-                                        elevation={12}
-                                        sx={{ borderRadius: "3em", maxWidth: "100%", minWidth: "250px", backgroundColor: theme.palette.portfolio_photo.main }}
-                                        image={myphoto_one}
-                                        alt="portfolio_image"
-                                    />
-                                </Card>}
-
-
-                            </Grid>}
-
-                        </Fade>}
-
-                        <Fade in={contactslide}>
-
-                            <Grid item xs={12} sm={12} md={6}
-                                sx={{
-                                    textAlign: matchesSM ? "center" : undefined,
-                                    minWidth: "21.0em",
-                                    padding: "1em",
-                                    [theme.breakpoints.up("sm")]: {
-                                        paddingLeft: "3em",
-                                    },
-                                    [theme.breakpoints.down("xs")]: {
-                                        paddingLeft: "0em",
-                                    },
-
-                                }}>
-
-                                <Typography variant="h3" align={matchesMD ? "center" : "left"}>
-                                    Hello, It's Me
-                                </Typography>
-
-                                <Typography variant="h2" align={matchesMD ? "center" : "left"}>
-                                    Firaol Tulu
-                                </Typography>
-
-                                <Typography variant="h6" align={matchesMD ? "center" : "left"}>
-                                    I'm a{" "}
-                                    <TypeAnimation
-                                        sequence={[
-                                            "Software Developer.",
-                                            1000,
-                                            "Website Developer.",
-                                            1000,
-                                            "Backend Developer.",
-                                            1000,
-                                            "React Developer.",
-                                            1000,
-                                        ]}
-                                        speed={10}
-                                        repeat={Infinity}
-                                        style={{}}
-                                    />
-                                </Typography>
-
-                                <Typography variant="subtitle3" align={matchesMD ? "center" : "left"} sx={{ marginTop: "1em" }}>
-                                    Hey there! 👋 I'm Firaol Tulu, a Node backend developer and React aficionado.
-                                    I'm an artist with code, crafting web and mobile app masterpieces. With 2+ years of experience
-                                    in Serverless, nextjs, API development, and Automation Development, I bring innovation and meet
-                                    deadlines. Quality, scalability, and serverless magic are my specialties.
-                                    Let's create something awesome together! 😄✨.
-                                </Typography>
-
-                                <Grid
-                                    container
-                                    justify={matchesXS ? "center" : "left"}
-                                    sx={{ marginTop: "1em" }}>
-
-                                    <Grid item xs={6}>
-
-                                        <Button
-                                            href="https://chocolate-kristal-51.tiiny.site"
-                                            target="_blank"
+                                        {<Card
                                             sx={{
-                                                ...theme.typography.estimate,
-                                                backgroundColor: theme.palette.secondary.main,
-                                                borderRadius: 50,
-                                                height: 45,
-                                                width: 145,
-                                                "&:hover": {
-                                                    backgroundColor: theme.palette.secondary.light,
-                                                },
-                                            }}
+                                                borderRadius: "4em",
+                                                padding: "1em",
+                                                position: "relative",
+                                                animationName: "animat2",
+                                                animationDuration: "4s",
+                                                animationIterationCount: "infinite",
 
-                                            variant="outlined"
+                                                "@keyframes animat2": {
+                                                    "0%": { left: "0px", top: "0px" },
+                                                    "50%": { left: "0px", top: "-20px" },
+                                                    "100%": { left: "0px", top: "0px" },
+                                                }
+                                            }}>
+                                            <CardMedia
+                                                component="img"
+                                                elevation={12}
+                                                sx={{ borderRadius: "3em", maxWidth: "100%", minWidth: "250px", backgroundColor: theme.palette.portfolio_photo.main }}
+                                                image={myphoto_one}
+                                                alt="portfolio_image"
+                                            />
+                                        </Card>}
 
-                                        >
-                                            <span style={{ marginRight: 10 }}>Download CV</span>
-
-                                        </Button>
 
                                     </Grid>
+                                }
 
-                                    <Grid item xs={6}>
+                                {
+                                    <Grid item xs={12} sm={12} md={6}
+                                        sx={{
+                                            textAlign: matchesSM ? "center" : undefined,
+                                            minWidth: "21.0em",
+                                            padding: "1em",
 
-                                        <Button
-                                            sx={{
-                                                ...theme.typography.learnButton,
-                                                backgroundColor: theme.palette.secondary.main,
-                                                fontSize: "0.9rem",
-                                                height: 45,
-                                                width: 145,
-                                                "&:hover": {
-                                                    backgroundColor: theme.palette.secondary.light,
-                                                },
-                                            }}
-                                            variant="outlined"
-                                            onClick={() => {
-                                                setnavValue({ currentValue: 7, oldValue: navvalue.currentValue });
-                                            }}
-                                            endIcon={<ArrowForwardIcon
-                                                width={15}
-                                                height={15}
-                                                fill={theme.palette.primary.contrastText}
-                                            />}
-                                        >
-                                            <span style={{ marginRight: 8 }}>Contact Me</span>
+                                            [theme.breakpoints.up("sm")]: {
+                                                paddingLeft: "3em",
+                                            },
+                                            [theme.breakpoints.down("xs")]: {
+                                                paddingLeft: "0em",
+                                            },
 
-                                        </Button>
+                                            // animation: "animat2-slide-right 2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both",
+
+                                            // " @-webkit-keyframes slide-right": {
+                                            //     "-100%": {
+                                            //         "-webkit-transform": "translateX(0)",
+                                            //         "transform": "translateX(0)",
+                                            //     },
+                                            //     "100%": {
+                                            //         " -webkit-transform": "translateX(30px)",
+                                            //         " transform": "translateX(30px)"
+                                            //     }
+                                            // },
+                                            // "@keyframes animat2-slide-right": {
+                                            //     "0%": {
+                                            //         "-webkit-transform": "translateX(0)",
+                                            //         "transform": "translateX(0)",
+                                            //     },
+                                            //     "100%": {
+                                            //         "-webkit-transform": "translateX(30px)",
+                                            //         "transform": "translateX(30px)",
+                                            //     }
+                                            // },
+
+                                        }}>
+
+                                        <Typography variant="h3" align={matchesMD ? "center" : "left"}>
+                                            Hello, It's Me
+                                        </Typography>
+
+                                        <Typography variant="h2" align={matchesMD ? "center" : "left"}>
+                                            Firaol Tulu
+                                        </Typography>
+
+                                        <Typography variant="h6" align={matchesMD ? "center" : "left"}>
+                                            I'm a{" "}
+                                            <TypeAnimation
+                                                sequence={[
+                                                    "Software Developer.",
+                                                    1000,
+                                                    "Website Developer.",
+                                                    1000,
+                                                    "Backend Developer.",
+                                                    1000,
+                                                    "React Developer.",
+                                                    1000,
+                                                ]}
+                                                speed={10}
+                                                repeat={Infinity}
+                                                style={{}}
+                                            />
+                                        </Typography>
+
+                                        <Typography variant="subtitle3" align={matchesMD ? "center" : "left"} sx={{ marginTop: "1em" }}>
+                                            Hey there! 👋 I'm Firaol Tulu, a Node backend developer and React aficionado.
+                                            I'm an artist with code, crafting web and mobile app masterpieces. With 2+ years of experience
+                                            in Serverless, nextjs, API development, and Automation Development, I bring innovation and meet
+                                            deadlines. Quality, scalability, and serverless magic are my specialties.
+                                            Let's create something awesome together! 😄✨.
+                                        </Typography>
+
+                                        <Grid
+                                            container
+                                            justify={matchesXS ? "center" : "left"}
+                                            sx={{ marginTop: "1em" }}>
+
+                                            <Grid item xs={6}>
+
+                                                <Button
+                                                    href="https://chocolate-kristal-51.tiiny.site"
+                                                    target="_blank"
+                                                    sx={{
+                                                        ...theme.typography.estimate,
+                                                        backgroundColor: theme.palette.secondary.main,
+                                                        borderRadius: 50,
+                                                        height: 45,
+                                                        width: 145,
+                                                        "&:hover": {
+                                                            backgroundColor: theme.palette.secondary.light,
+                                                        },
+                                                    }}
+
+                                                    variant="outlined"
+
+                                                >
+                                                    <span style={{ marginRight: 10 }}>Download CV</span>
+
+                                                </Button>
+
+                                            </Grid>
+
+                                            <Grid item xs={6}>
+
+                                                <Button
+                                                    sx={{
+                                                        ...theme.typography.learnButton,
+                                                        backgroundColor: theme.palette.secondary.main,
+                                                        fontSize: "0.9rem",
+                                                        height: 45,
+                                                        width: 145,
+                                                        "&:hover": {
+                                                            backgroundColor: theme.palette.secondary.light,
+                                                        },
+                                                    }}
+                                                    variant="outlined"
+                                                    onClick={() => {
+                                                        setnavValue({ currentValue: 7, oldValue: navvalue.currentValue });
+                                                    }}
+                                                    endIcon={<ArrowForwardIcon
+                                                        width={15}
+                                                        height={15}
+                                                        fill={theme.palette.primary.contrastText}
+                                                    />}
+                                                >
+                                                    <span style={{ marginRight: 8 }}>Contact Me</span>
+
+                                                </Button>
+
+                                            </Grid>
+
+                                        </Grid>
 
                                     </Grid>
+                                }
 
-                                </Grid>
+                                {!matchesSM &&
+                                    <Grid item xs={12} sm={12} md={6}
+                                        align="center"
+                                        sx={{
+                                            Width: "100%",
+                                            animation: "animat2-slide-left 2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both",
+                                            " @-webkit-keyframes slide-left": {
+                                                "-100%": {
+                                                    "-webkit-transform": "translateX(0)",
+                                                    "transform": "translateX(0)",
+                                                },
+                                                "100%": {
+                                                    " -webkit-transform": "translateX(-60px)",
+                                                    " transform": "translateX(-60px)"
+                                                }
+                                            },
+                                            "@keyframes animat2-slide-left": {
+                                                "0%": {
+                                                    "-webkit-transform": "translateX(0)",
+                                                    "transform": "translateX(0)",
+                                                },
+                                                "100%": {
+                                                    "-webkit-transform": "translateX(-20px)",
+                                                    "transform": "translateX(-20px)",
+                                                }
+                                            },
 
+                                        }}>
+
+                                        {!matchesSM && <Card align={matchesSM ? "center" : "center"}
+                                            sx={{
+
+                                                borderRadius: "4em",
+                                                padding: "1em",
+                                                position: "relative",
+                                                animationName: "animat1",
+                                                animationDuration: "4s",
+                                                animationIterationCount: "infinite",
+                                                maxWidth: "370px", minWidth: "250px",
+                                                maxHeight: "370px",
+
+                                                "@keyframes animat1": {
+                                                    "0%": { left: "0px", top: "0px" },
+                                                    "30%": { left: "0px", top: matchesMD ? "5px" : "-10px" },
+                                                    "60%": { left: "0px", top: "20px" },
+                                                    "100%": { left: "0px", top: "0px" },
+                                                }
+                                            }}>
+                                            <CardMedia
+                                                component="img"
+                                                elevation={12}
+
+                                                sx={{ borderRadius: "3em", maxWidth: "343px", minWidth: "250px", maxHeight: "343px", backgroundColor: theme.palette.portfolio_photo.main }}
+                                                image={myphoto_one}
+                                                alt="portfolio_image"
+                                            />
+                                        </Card>}
+
+                                        {/* {!matchesSM && <Card align={matchesSM ? "center" : "center"}
+                                            sx={{
+
+                                                borderRadius: "2em",
+                                                padding: "0em",
+                                                position: "relative",
+                                                animationName: "animat1",
+                                                animationDuration: "4s",
+                                                animationIterationCount: "infinite",
+                                                maxWidth: "470px", minWidth: "250px",
+                                                maxHeight: "310px",
+
+                                                "@keyframes animat1": {
+                                                    "0%": { left: "0px", top: "0px" },
+                                                    "30%": { left: "0px", top: matchesMD ? "5px" : "-10px" },
+                                                    "60%": { left: "0px", top: "20px" },
+                                                    "100%": { left: "0px", top: "0px" },
+                                                }
+
+                                            }}>
+
+                                            <CardContent sx={{ padding: "0em", paddingBottom: "0em" }}>
+
+                                                {<ReactPlayer
+                                                    style={{ padding: "0em", }}
+                                                    config={{
+                                                        vimeo: {
+                                                            autoplay: true,
+                                                            background: true,
+                                                            controls: true,
+                                                            maxWidth: "470px",
+                                                            maxHeight: "370px",
+                                                        },
+                                                    }}
+                                                    // playing={true} muted={false}
+                                                    autoplay={true}
+                                                    loop={true}
+                                                    controls={true}
+                                                    width={"100%"}
+                                                    // height={"100%"}
+                                                    url='https://vimeo.com/873569687' />}
+
+                                            </CardContent>
+
+                                        </Card>} */}
+
+                                        {/* {!matchesSM && <Card align={matchesSM ? "center" : "center"}
+                                            sx={{
+                                                backgroundColor: theme.palette.portfolio_photo.main,
+                                                borderRadius: "2em",
+                                                padding: "0em",
+                                                position: "relative",
+                                                animationName: "animat1",
+                                                animationDuration: "4s",
+                                                animationIterationCount: "infinite",
+                                                maxWidth: "470px", minWidth: "250px",
+                                                maxHeight: "320px",
+
+                                                "@keyframes animat1": {
+                                                    "0%": { left: "0px", top: "0px" },
+                                                    "30%": { left: "0px", top: matchesMD ? "5px" : "-10px" },
+                                                    "60%": { left: "0px", top: "20px" },
+                                                    "100%": { left: "0px", top: "0px" },
+                                                }
+
+                                            }}>
+
+                                            <CardContent sx={{ padding: "0em", paddingBottom: "0em", backgroundColor: theme.palette.portfolio_photo.main }}>
+
+                                                <video
+                                                    autoPlay
+                                                    loop
+                                                    muted
+                                                    controls
+                                                    poster={myphoto_one}
+
+                                                    style={{
+                                                        maxWidth: "470px", minWidth: "250px",
+                                                        // maxHeight: "320px",
+                                                        maxHeight: "670px"
+                                                    }}
+                                                >
+                                                    <source
+                                                        src={portfolio_video_one}
+                                                        type="video/mp4"
+                                                    />
+
+                                                </video>
+
+                                                <Typography
+                                                    variant={"h4"}
+                                                // level="body-lg"
+                                                // fontWeight="lg"
+                                                // textColor="#fff"
+                                                // mt={{ xs: 12, sm: 18 }}
+                                                >
+                                                    ፍራኦል ቱሉ
+                                                </Typography>
+
+                                            </CardContent>
+
+                                        </Card>} */}
+
+                                        {/* {!matchesSM && <Card align={matchesSM ? "center" : "center"}
+                                            sx={{
+                                                // backgroundColor: theme.palette.portfolio_photo.main,
+                                                borderRadius: "5px",
+                                                marginLeft: matchesMD ? "1em" : "7em",
+                                                marginRight: matchesMD ? "1em" : "7em",
+                                                position: "relative",
+                                                // animationName: "animat1",
+                                                // animationDuration: "4s",
+                                                // animationIterationCount: "infinite",
+                                                // maxWidth: "470px", minWidth: "250px",
+                                                // maxHeight: "320px",
+
+                                                // "@keyframes animat1": {
+                                                //     "0%": { left: "0px", top: "0px" },
+                                                //     "30%": { left: "0px", top: matchesMD ? "5px" : "-10px" },
+                                                //     "60%": { left: "0px", top: "20px" },
+                                                //     "100%": { left: "0px", top: "0px" },
+                                                // }
+
+                                            }}>
+
+                                            <Grid container columnSpacing={2}>
+
+                                                <Grid item xs={4}
+                                                    sx={{
+                                                        backgroundColor: theme.palette.contact_video_card.main,
+                                                        borderRadius: "5px"
+                                                    }}>
+                                                    <Box sx={{
+                                                        // backgroundColor: theme.palette.portfolio_photo.main,
+                                                        "position": "absolute",
+                                                        "top": "10%",
+                                                        "left": "3em",
+                                                        "width": "600px",
+                                                        "height": "600px",
+                                                        zIndex: (theme) => theme.zIndex.drawer + 10,
+                                                    }}>
+
+                                                        <Typography variant="h3" sx={{}} align={"left"}>
+                                                            Hello, It's Me
+                                                        </Typography>
+                                                        <Typography variant="h2" sx={{}} align={"left"}>
+                                                            Firaol Tulu
+                                                        </Typography>
+                                                        <Typography variant="h6" sx={{}} align={"left"}>
+                                                            I'm a{" "}
+                                                            <TypeAnimation
+                                                                sequence={[
+                                                                    "Software Developer.",
+                                                                    1000,
+                                                                    "Website Developer.",
+                                                                    1000,
+                                                                    "Backend Developer.",
+                                                                    1000,
+                                                                    "React Developer.",
+                                                                    1000,
+                                                                ]}
+                                                                speed={10}
+                                                                repeat={Infinity}
+                                                                style={{}}
+                                                            />
+                                                        </Typography>
+
+                                                        <Typography variant="subtitle3" align={"left"} sx={{ marginTop: "2em", }}>
+                                                            Hey there! 👋 I'm Firaol Tulu, a Node backend developer and React aficionado.
+                                                            I'm an artist with code, crafting web and mobile app masterpieces. With 2+ years of experience
+                                                            in Serverless, nextjs, API development, and Automation Development, I bring innovation and meet
+                                                            deadlines. Quality, scalability, and serverless magic are my specialties.
+                                                            Let's create something awesome together! 😄✨.
+                                                        </Typography>
+
+                                                        <Grid
+                                                            container
+                                                            // justify={"left"}
+                                                            sx={{ marginTop: "1em" }}>
+
+                                                            <Grid item xs={6}>
+
+                                                                <Button
+                                                                    href="https://chocolate-kristal-51.tiiny.site"
+                                                                    target="_blank"
+                                                                    sx={{
+                                                                        ...theme.typography.estimate,
+                                                                        backgroundColor: theme.palette.secondary.main,
+                                                                        borderRadius: 50,
+                                                                        height: 45,
+                                                                        width: 145,
+                                                                        "&:hover": {
+                                                                            backgroundColor: theme.palette.secondary.light,
+                                                                        },
+                                                                    }}
+
+                                                                    variant="outlined"
+
+                                                                >
+                                                                    <span style={{ marginRight: 10 }}>Download CV</span>
+
+                                                                </Button>
+
+                                                            </Grid>
+
+                                                            <Grid item xs={6}>
+
+                                                                <Button
+                                                                    sx={{
+                                                                        ...theme.typography.learnButton,
+                                                                        backgroundColor: theme.palette.secondary.main,
+                                                                        fontSize: "0.9rem",
+                                                                        height: 45,
+                                                                        width: 145,
+                                                                        "&:hover": {
+                                                                            backgroundColor: theme.palette.secondary.light,
+                                                                        },
+                                                                    }}
+                                                                    variant="outlined"
+                                                                    onClick={() => {
+                                                                        setnavValue({ currentValue: 7, oldValue: navvalue.currentValue });
+                                                                    }}
+                                                                    endIcon={<ArrowForwardIcon
+                                                                        width={15}
+                                                                        height={15}
+                                                                        fill={theme.palette.primary.contrastText}
+                                                                    />}
+                                                                >
+                                                                    <span style={{ marginRight: 8 }}>Contact Me</span>
+
+                                                                </Button>
+
+                                                            </Grid>
+
+                                                        </Grid>
+
+                                                    </Box>
+                                                </Grid>
+
+                                                <Grid item xs={8}>
+                                                    <video
+                                                        autoPlay
+                                                        loop
+                                                        muted
+                                                        // controls
+                                                        // poster={myphoto_one}
+
+                                                        style={{
+                                                            maxWidth: "100%", minWidth: "250px",
+                                                            borderRadius: "5px",
+                                                            // maxHeight: "320px",
+                                                            Height: "100px"
+                                                        }}
+                                                    >
+                                                        <source
+                                                            src={portfolio_video_one}
+                                                            type="video/mp4"
+                                                        />
+
+                                                    </video>
+                                                </Grid>
+
+                                            </Grid>
+
+
+                                        </Card>} */}
+                                    </Grid>
+                                }
                             </Grid>
-
-                        </Fade>
-
-                        {!matchesSM && <Fade in={contactslide}>
-
-                            {<Grid item xs={12} sm={12} md={6}
-                                align="center"
-                                sx={{
-                                    Width: "100%",
-
-                                }}>
-
-                                {!matchesSM && <Card align={matchesSM ? "center" : "center"}
-                                    sx={{
-
-                                        borderRadius: "4em",
-                                        padding: "1em",
-                                        position: "relative",
-                                        animationName: "animat1",
-                                        animationDuration: "4s",
-                                        animationIterationCount: "infinite",
-                                        maxWidth: "370px", minWidth: "250px",
-                                        maxHeight: "370px",
-
-                                        "@keyframes animat1": {
-                                            "0%": { left: "0px", top: "0px" },
-                                            "30%": { left: "0px", top: matchesMD ? "5px" : "-10px" },
-                                            "60%": { left: "0px", top: "20px" },
-                                            "100%": { left: "0px", top: "0px" },
-                                        }
-                                    }}>
-                                    <CardMedia
-                                        component="img"
-                                        elevation={12}
-
-                                        sx={{ borderRadius: "3em", maxWidth: "343px", minWidth: "250px", maxHeight: "343px", backgroundColor: theme.palette.portfolio_photo.main }}
-                                        image={myphoto_one}
-                                        alt="portfolio_image"
-                                    />
-                                </Card>}
-
-                            </Grid>}
-
-                        </Fade>}
+                        </Grid>
 
                     </Grid>
 
@@ -2923,8 +3278,181 @@ function LandingPage(props) {
 
                 </Grid >
 
+                {/*  Licenses & certifications */}
+                <Grid item xs={12} ref={Licensesref} sx={{
+                    backgroundColor: theme.palette.primary.main,
+                    padding: "1em",
+                    paddingTop: "5em",
+                }}>
+                    <Grid container direction="row" rowSpacing={0} sx={{ padding: "1em", }}>
+
+                        <Grid item xs={12} sx={{ marginBottom: "5em" }}>
+                            <Typography variant="h3" align={"center"}>
+                                Licenses & certifications
+                            </Typography>
+                        </Grid>
+
+                        <Grid item xs={12} sx={{}}>
+
+                            <Grid container direction="row"
+                                sx={{
+                                    alignContent: "center",
+                                    backgroundColor: theme.palette.certifications.main,
+                                    borderRadius: "1em",
+                                }}>
+
+                                <Grid item xs={12} md={6} >
+                                    <Box sx={{ padding: "1em" }}>
+                                        <Card elevation={0} sx={{ display: 'flex', backgroundColor: theme.palette.certifications.main, }}>
+                                            <CardMedia
+                                                component="img"
+                                                sx={{ maxWidth: "170px", minWidth: "104px", maxHeight: "114px", minHeight: "104px", padding: "1px" }}
+                                                image={metaicon}
+                                                alt="Meta Icon"
+                                            />
+                                            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                                                <CardContent sx={{ flex: '1 0 auto' }}>
+                                                    <Typography variant="h6" color={theme.palette.certifications.contrastText}>
+                                                        Mobile Development
+                                                    </Typography>
+                                                    <Typography variant="subtitle5" color={theme.palette.certifications.contrastText}>
+                                                        Meta<br></br>
+                                                    </Typography>
+                                                    <Typography variant="subtitle4" color={theme.palette.certifications.contrastText}>
+                                                        Issued Sep 2022<br></br>
+                                                    </Typography>
+                                                    <Typography variant="subtitle4" color={theme.palette.certifications.contrastText}>
+                                                        Credential ID DPUHGZGE6VAY<br></br>
+                                                    </Typography>
+                                                </CardContent>
+                                                <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
+                                                    <Button variant="outlined" size="small" href={'https://www.coursera.org/account/accomplishments/certificate/DPUHGZGE6VAY'} target="_blank" endIcon={<SendIcon />}>
+                                                        show Credential
+                                                    </Button>
+
+                                                </Box>
+                                            </Box>
+                                        </Card>
+
+                                    </Box>
+                                </Grid>
+
+                                <Grid item xs={12} md={6} >
+
+                                    <Box sx={{ padding: "1em" }}>
+                                        <Card elevation={0} sx={{ display: 'flex', backgroundColor: theme.palette.certifications.main, }}>
+                                            <CardMedia
+                                                component="img"
+                                                sx={{ borderRadius: "5px", maxWidth: "170px", minWidth: "104px", maxHeight: "144px", padding: "1px" }}
+                                                image={certificatetwo}
+                                                alt="Mobile Developement certificate"
+                                            >
+                                            </CardMedia>
+                                            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                                                <CardContent sx={{ flex: '1 0 auto' }}>
+                                                    <Typography variant="subtitle4" textAlign={"center"} color={theme.palette.certifications.contrastText}>
+                                                        Skills: Reactjs | React.Native
+                                                    </Typography>
+
+                                                </CardContent>
+
+                                            </Box>
+                                        </Card>
+
+                                    </Box>
+
+                                </Grid>
+
+
+                            </Grid>
+
+                        </Grid>
+
+                        <Grid item xs={12} sx={{ marginBottom: "5px", marginTop: "5px" }}>
+                            <Divider></Divider>
+                        </Grid>
+
+                        <Grid item xs={12} sx={{ marginBottom: "1em" }}>
+
+                            <Grid container direction="row"
+                                sx={{
+                                    alignContent: "center",
+                                    backgroundColor: theme.palette.certifications.main,
+                                    borderRadius: "1em",
+                                }}>
+
+                                <Grid item xs={12} md={6} >
+                                    <Box sx={{ padding: "1em" }}>
+                                        <Card elevation={0} sx={{ display: 'flex', backgroundColor: theme.palette.certifications.main, }}>
+                                            <CardMedia
+                                                component="img"
+                                                sx={{ maxWidth: "170px", minWidth: "104px", maxHeight: "144px", padding: "6px" }}
+                                                image={googleicon}
+                                                alt="Live from space album cover"
+                                            />
+                                            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                                                <CardContent sx={{ flex: '1 0 auto' }}>
+                                                    <Typography variant="h6" color={theme.palette.certifications.contrastText}>
+                                                        Foundations: Data, Data, Everywhere
+                                                    </Typography>
+                                                    <Typography variant="subtitle5" color={theme.palette.certifications.contrastText}>
+                                                        Google<br></br>
+                                                    </Typography>
+                                                    <Typography variant="subtitle4" color={theme.palette.certifications.contrastText}>
+                                                        Issued Sep 2022<br></br>
+                                                    </Typography>
+                                                    <Typography variant="subtitle4" color={theme.palette.certifications.contrastText}>
+                                                        Credential ID ABSCVTD5FCWW<br></br>
+                                                    </Typography>
+                                                </CardContent>
+                                                <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
+                                                    <Button variant="outlined" href={'https://www.coursera.org/account/accomplishments/certificate/ABSCVTD5FCWW'} target="_blank" size="small" endIcon={<SendIcon />}>
+                                                        show Credential
+                                                    </Button>
+
+                                                </Box>
+                                            </Box>
+                                        </Card>
+
+                                    </Box>
+                                </Grid>
+
+                                <Grid item xs={12} md={6} >
+
+                                    <Box sx={{ padding: "1em" }}>
+                                        <Card elevation={0} sx={{ display: 'flex', backgroundColor: theme.palette.certifications.main, }}>
+                                            <CardMedia
+                                                component="img"
+                                                sx={{ borderRadius: "5px", maxWidth: "170px", minWidth: "104px", maxHeight: "144px", padding: "6px" }}
+                                                image={certificateone}
+                                                alt="Live from space album cover"
+                                            />
+                                            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                                                <CardContent sx={{ flex: '1 0 auto' }}>
+                                                    <Typography variant="subtitle4" textAlign={"center"} color={theme.palette.certifications.contrastText}>
+                                                        Skills: R
+                                                    </Typography>
+
+                                                </CardContent>
+
+                                            </Box>
+                                        </Card>
+
+                                    </Box>
+
+                                </Grid>
+
+
+                            </Grid>
+
+                        </Grid>
+
+                    </Grid>
+
+                </Grid>
+
                 {/*Contact Me  */}
-                <Grid item xs={12} ref={contactone_ref} sx={{ backgroundColor: theme.palette.primary.main, padding: "1em", paddingTop: "5em", }}>
+                <Grid item xs={12} ref={contactone_ref} sx={{ padding: "1em", paddingTop: "5em", }}>
 
                     <Grid container direction="column">
 
@@ -3131,6 +3659,7 @@ function LandingPage(props) {
                     </Grid>
 
                 </Grid >
+
 
             </Grid>
 
@@ -3407,7 +3936,6 @@ function LandingPage(props) {
                 </DialogContent>
 
             </BootstrapDialog>
-
 
 
             <Snackbar

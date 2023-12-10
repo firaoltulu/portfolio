@@ -1134,7 +1134,7 @@ function LandingPage(props) {
 
                                         <Typography variant="subtitle3" align={matchesMD ? "center" : "left"} sx={{ marginTop: "1em" }}>
                                             Hey there! 👋 I'm Firaol Tulu, a Node backend developer and React aficionado.
-                                            I'm an artist with code, crafting web and mobile app masterpieces. With 2+ years of experience
+                                            I'm an artist with code, crafting web and mobile app masterpieces. With 3+ years of experience
                                             in Serverless, nextjs, API development, and Automation Development, I bring innovation and meet
                                             deadlines. Quality, scalability, and serverless magic are my specialties.
                                             Let's create something awesome together! 😄✨.
@@ -1209,27 +1209,7 @@ function LandingPage(props) {
                                         align="center"
                                         sx={{
                                             Width: "100%",
-                                            animation: "animat2-slide-left 2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both",
-                                            " @-webkit-keyframes slide-left": {
-                                                "-100%": {
-                                                    "-webkit-transform": "translateX(0)",
-                                                    "transform": "translateX(0)",
-                                                },
-                                                "100%": {
-                                                    " -webkit-transform": "translateX(-60px)",
-                                                    " transform": "translateX(-60px)"
-                                                }
-                                            },
-                                            "@keyframes animat2-slide-left": {
-                                                "0%": {
-                                                    "-webkit-transform": "translateX(0)",
-                                                    "transform": "translateX(0)",
-                                                },
-                                                "100%": {
-                                                    "-webkit-transform": "translateX(-20px)",
-                                                    "transform": "translateX(-20px)",
-                                                }
-                                            },
+
 
                                         }}>
 
@@ -1239,18 +1219,54 @@ function LandingPage(props) {
                                                 borderRadius: "4em",
                                                 padding: "1em",
                                                 position: "relative",
-                                                animationName: "animat1",
-                                                animationDuration: "4s",
-                                                animationIterationCount: "infinite",
                                                 maxWidth: "370px", minWidth: "250px",
                                                 maxHeight: "370px",
 
-                                                "@keyframes animat1": {
-                                                    "0%": { left: "0px", top: "0px" },
-                                                    "30%": { left: "0px", top: matchesMD ? "5px" : "-10px" },
-                                                    "60%": { left: "0px", top: "20px" },
-                                                    "100%": { left: "0px", top: "0px" },
-                                                }
+
+
+
+                                                animation: "animat2-slide-left  1s linear both",
+                                                " @-webkit-keyframes slide-left": {
+                                                    "-0%": {
+                                                        "-webkit-transform": "scale(0.2)",
+                                                        "transform": "scale(0.2)",
+                                                        "-webkit-transform": "translateX(-200px)",
+                                                        "transform": "translateX(-200px)",
+                                                    },
+                                                    "100%": {
+                                                        " -webkit-transform": "scale(1)",
+                                                        "transform": "scale(1)",
+                                                        "-webkit-transform": "translateX(0)",
+                                                        "transform": "translateX(0)",
+                                                    }
+                                                },
+                                                "@keyframes animat2-slide-left": {
+                                                    "0%": {
+                                                        "-webkit-transform": "translateX(-200px) scale(0.2)",
+                                                        "transform": "translateX(-200px) scale(0.2)",
+                                                        // "-webkit-transform": "translateX(-200px)",
+                                                        // "transform": "translateX(-200px)",
+                                                    },
+                                                    "100%": {
+                                                        "-webkit-transform": "scale(1)",
+                                                        "transform": "scale(1)",
+                                                        // "-webkit-transform": "translateX(0)",
+                                                        // "transform": "translateX(0)",
+                                                    },
+                                                    // "0%": {
+                                                    //     "-webkit-transform": "scale(0.2)",
+                                                    //     "transform": " scale(0.2)",
+                                                    //     "-webkit-transform": "translateX(-200px)",
+                                                    //     "transform": "translateX(-200px)",
+                                                    // },
+                                                    // "100%": {
+                                                    //     "-webkit-transform": "scale(1)",
+                                                    //     "transform": "scale(1)",
+                                                    //     "-webkit-transform": "translateX(0)",
+                                                    //     "transform": "translateX(0)",
+                                                    // }
+                                                },
+
                                             }}>
                                             <CardMedia
                                                 component="img"
@@ -1570,6 +1586,33 @@ function LandingPage(props) {
 
                                 <Grid item xs={12}
                                     sx={{
+                                        "-webkit-animation": "service_one_slide-in-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both",
+                                        "animation": "service_one_slide-in-left 1.0s cubic-bezier(0.250, 0.460, 0.450, 0.940) both",
+                                        "@-webkit-keyframes service_one_slide-in-left": {
+                                            "0%": {
+                                                "-webkit-transform": " translateX(-1000px)",
+                                                "transform": "translateX(-1000px)",
+                                                "opacity": "0"
+                                            },
+                                            "100%": {
+                                                "-webkit-transform": "translateX(0)",
+                                                "transform": "translateX(0)",
+                                                "opacity": "1",
+                                            },
+                                        },
+                                        "@keyframes service_one_slide-in-left": {
+                                            "0%": {
+                                                "-webkit-transform": " translateX(-1000px)",
+                                                "transform": "translateX(-1000px)",
+                                                "opacity": "0"
+                                            },
+                                            "100%": {
+                                                "-webkit-transform": "translateX(0)",
+                                                "transform": "translateX(0)",
+                                                "opacity": "1",
+                                            }
+                                        }
+
                                     }}>
 
                                     <Grid
@@ -1768,7 +1811,10 @@ function LandingPage(props) {
 
                                 </Grid>
 
-                                <Grid item xs={12}>
+                                <Grid item xs={12}
+                                    sx={{
+                                    }}
+                                >
 
                                     <Grid
                                         container
@@ -1795,7 +1841,35 @@ function LandingPage(props) {
                                                 sx={{
                                                     alignContent: "center",
                                                     padding: "1em",
+                                                    "-webkit-animation": "service_three_slide-in-left 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both",
+                                                    "animation": "service_one_slide-in-left 1.0s cubic-bezier(0.250, 0.460, 0.450, 0.940) both",
+                                                    "@-webkit-keyframes service_three_slide-in-left": {
+                                                        "0%": {
+                                                            "-webkit-transform": " translateX(-1000px)",
+                                                            "transform": "translateX(-1000px)",
+                                                            "opacity": "0"
+                                                        },
+                                                        "100%": {
+                                                            "-webkit-transform": "translateX(0)",
+                                                            "transform": "translateX(0)",
+                                                            "opacity": "1",
+                                                        },
+                                                    },
+                                                    "@keyframes service_three_slide-in-left": {
+                                                        "0%": {
+                                                            "-webkit-transform": " translateX(-1000px)",
+                                                            "transform": "translateX(-1000px)",
+                                                            "opacity": "0"
+                                                        },
+                                                        "100%": {
+                                                            "-webkit-transform": "translateX(0)",
+                                                            "transform": "translateX(0)",
+                                                            "opacity": "1",
+                                                        }
+                                                    }
+
                                                 }}>
+
                                                 <Typography variant="h4">Website Development.</Typography>
 
 
@@ -1850,6 +1924,7 @@ function LandingPage(props) {
                                                 </Button>}
 
                                             </Paper>
+
                                         </Gridcustomone>
 
 
@@ -1986,16 +2061,69 @@ function LandingPage(props) {
                                     borderRadius: "4em",
                                     padding: "1em",
                                     position: "relative",
-                                    animationName: "animat3",
-                                    animationDuration: "4s",
-                                    animationIterationCount: "infinite",
                                     maxWidth: "433px", minWidth: "250px",
                                     maxHeight: "433px",
-                                    "@keyframes animat3": {
-                                        "0%": { left: "0px", top: "0px" },
-                                        "50%": { left: "0px", top: matchesMD ? "-20px" : "20px" },
-                                        "100%": { left: "0px", top: "0px" },
-                                    }
+                                    // animationName: "animat3",
+                                    // animationDuration: "4s",
+                                    // animationIterationCount: "infinite",
+                                    // "@keyframes animat3": {
+                                    //     "0%": { left: "0px", top: "0px" },
+                                    //     "50%": { left: "0px", top: matchesMD ? "-20px" : "20px" },
+                                    //     "100%": { left: "0px", top: "0px" },
+                                    // },
+                                    "-webkit-animation": "about-one-slide-in-left 1.2s linear both",
+                                    "animation": "about-one-slide-in-left 1.2s linear both",
+                                    "@-webkit-keyframes about-one-slide-in-left": {
+                                        "0%": {
+                                            "-webkit-transform": " translateX(-1000px)",
+                                            "transform": "translateX(-1000px)",
+                                            "opacity": "0"
+                                        },
+                                        "100%": {
+                                            "-webkit-transform": "translateX(0)",
+                                            "transform": "translateX(0)",
+                                            "opacity": "1",
+                                        },
+                                    },
+                                    "@keyframes about-one-slide-in-left": {
+                                        "0%": {
+                                            "-webkit-transform": " translateX(-1000px)",
+                                            "transform": "translateX(-1000px)",
+                                            "opacity": "0"
+                                        },
+                                        "100%": {
+                                            "-webkit-transform": "translateX(0)",
+                                            "transform": "translateX(0)",
+                                            "opacity": "1",
+                                        }
+                                    },
+                                    "-webkit-animation": "about-one-slide-out-left 1.8s linear both",
+                                    "animation": "about-one-slide-out-left 1.8s linear both",
+                                    "@-webkit-keyframes about-one-slide-out-left": {
+                                        "0%": {
+                                            "-webkit-transform": "translateX(0)",
+                                            "transform": "translateX(0)",
+                                            "opacity": "1",
+                                        },
+                                        "100%": {
+                                            "-webkit-transform": " translateX(-1000px)",
+                                            "transform": "translateX(-1000px)",
+                                            "opacity": "0"
+                                        },
+                                    },
+                                    "@keyframes about-one-slide-out-left": {
+                                        "0%": {
+                                            "-webkit-transform": "translateX(0)",
+                                            "transform": "translateX(0)",
+                                            "opacity": "1",
+                                        },
+                                        "100%": {
+                                            "-webkit-transform": " translateX(-1000px)",
+                                            "transform": "translateX(-1000px)",
+                                            "opacity": "0"
+                                        }
+                                    },
+
                                 }}>
                                 <CardMedia
                                     component="img"

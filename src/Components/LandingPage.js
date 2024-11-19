@@ -61,8 +61,11 @@ import firaolMediaCover from './Joycomponet';
 import portfolio_video_one from "../Assets/portfolio_video_one.mp4";
 import googleicon from "../Assets/googleicon.png";
 import metaicon from "../Assets/metaicon.png";
+import alxicon from "../Assets/alxicon.png";
 import certificateone from "../Assets/certificateone.png";
 import certificatetwo from "../Assets/certificatetwo.png";
+import certificatethree from "../Assets/certificatethree.png";
+
 
 const Testimonials = [
     {
@@ -1148,7 +1151,7 @@ function LandingPage(props) {
                                             <Grid item xs={6}>
 
                                                 <Button
-                                                    href="https://chocolate-kristal-51.tiiny.site"
+                                                    href="https://salmon-ketty-48.tiiny.site"
                                                     target="_blank"
                                                     sx={{
                                                         ...theme.typography.estimate,
@@ -1185,7 +1188,7 @@ function LandingPage(props) {
                                                     }}
                                                     variant="outlined"
                                                     onClick={() => {
-                                                        setnavValue({ currentValue: 7, oldValue: navvalue.currentValue });
+                                                        setnavValue({ currentValue: 8, oldValue: navvalue.currentValue });
                                                     }}
                                                     endIcon={<ArrowForwardIcon
                                                         width={15}
@@ -1225,47 +1228,47 @@ function LandingPage(props) {
 
 
 
-                                                animation: "animat2-slide-left  1s linear both",
-                                                " @-webkit-keyframes slide-left": {
-                                                    "-0%": {
-                                                        "-webkit-transform": "scale(0.2)",
-                                                        "transform": "scale(0.2)",
-                                                        "-webkit-transform": "translateX(-200px)",
-                                                        "transform": "translateX(-200px)",
-                                                    },
-                                                    "100%": {
-                                                        " -webkit-transform": "scale(1)",
-                                                        "transform": "scale(1)",
-                                                        "-webkit-transform": "translateX(0)",
-                                                        "transform": "translateX(0)",
-                                                    }
-                                                },
-                                                "@keyframes animat2-slide-left": {
-                                                    "0%": {
-                                                        "-webkit-transform": "translateX(-200px) scale(0.2)",
-                                                        "transform": "translateX(-200px) scale(0.2)",
-                                                        // "-webkit-transform": "translateX(-200px)",
-                                                        // "transform": "translateX(-200px)",
-                                                    },
-                                                    "100%": {
-                                                        "-webkit-transform": "scale(1)",
-                                                        "transform": "scale(1)",
-                                                        // "-webkit-transform": "translateX(0)",
-                                                        // "transform": "translateX(0)",
-                                                    },
-                                                    // "0%": {
-                                                    //     "-webkit-transform": "scale(0.2)",
-                                                    //     "transform": " scale(0.2)",
-                                                    //     "-webkit-transform": "translateX(-200px)",
-                                                    //     "transform": "translateX(-200px)",
-                                                    // },
-                                                    // "100%": {
-                                                    //     "-webkit-transform": "scale(1)",
-                                                    //     "transform": "scale(1)",
-                                                    //     "-webkit-transform": "translateX(0)",
-                                                    //     "transform": "translateX(0)",
-                                                    // }
-                                                },
+                                                // animation: "animat2-slide-left  1s linear both",
+                                                // " @-webkit-keyframes slide-left": {
+                                                //     "-0%": {
+                                                //         "-webkit-transform": "scale(0.2)",
+                                                //         "transform": "scale(0.2)",
+                                                //         "-webkit-transform": "translateX(-200px)",
+                                                //         "transform": "translateX(-200px)",
+                                                //     },
+                                                //     "100%": {
+                                                //         " -webkit-transform": "scale(1)",
+                                                //         "transform": "scale(1)",
+                                                //         "-webkit-transform": "translateX(0)",
+                                                //         "transform": "translateX(0)",
+                                                //     }
+                                                // },
+                                                // "@keyframes animat2-slide-left": {
+                                                //     "0%": {
+                                                //         "-webkit-transform": "translateX(-200px) scale(0.2)",
+                                                //         "transform": "translateX(-200px) scale(0.2)",
+                                                //         // "-webkit-transform": "translateX(-200px)",
+                                                //         // "transform": "translateX(-200px)",
+                                                //     },
+                                                //     "100%": {
+                                                //         "-webkit-transform": "scale(1)",
+                                                //         "transform": "scale(1)",
+                                                //         // "-webkit-transform": "translateX(0)",
+                                                //         // "transform": "translateX(0)",
+                                                //     },
+                                                //     // "0%": {
+                                                //     //     "-webkit-transform": "scale(0.2)",
+                                                //     //     "transform": " scale(0.2)",
+                                                //     //     "-webkit-transform": "translateX(-200px)",
+                                                //     //     "transform": "translateX(-200px)",
+                                                //     // },
+                                                //     // "100%": {
+                                                //     //     "-webkit-transform": "scale(1)",
+                                                //     //     "transform": "scale(1)",
+                                                //     //     "-webkit-transform": "translateX(0)",
+                                                //     //     "transform": "translateX(0)",
+                                                //     // }
+                                                // },
 
                                             }}>
                                             <CardMedia
@@ -1381,169 +1384,6 @@ function LandingPage(props) {
 
                                         </Card>} */}
 
-                                        {/* {!matchesSM && <Card align={matchesSM ? "center" : "center"}
-                                            sx={{
-                                                // backgroundColor: theme.palette.portfolio_photo.main,
-                                                borderRadius: "5px",
-                                                marginLeft: matchesMD ? "1em" : "7em",
-                                                marginRight: matchesMD ? "1em" : "7em",
-                                                position: "relative",
-                                                // animationName: "animat1",
-                                                // animationDuration: "4s",
-                                                // animationIterationCount: "infinite",
-                                                // maxWidth: "470px", minWidth: "250px",
-                                                // maxHeight: "320px",
-
-                                                // "@keyframes animat1": {
-                                                //     "0%": { left: "0px", top: "0px" },
-                                                //     "30%": { left: "0px", top: matchesMD ? "5px" : "-10px" },
-                                                //     "60%": { left: "0px", top: "20px" },
-                                                //     "100%": { left: "0px", top: "0px" },
-                                                // }
-
-                                            }}>
-
-                                            <Grid container columnSpacing={2}>
-
-                                                <Grid item xs={4}
-                                                    sx={{
-                                                        backgroundColor: theme.palette.contact_video_card.main,
-                                                        borderRadius: "5px"
-                                                    }}>
-                                                    <Box sx={{
-                                                        // backgroundColor: theme.palette.portfolio_photo.main,
-                                                        "position": "absolute",
-                                                        "top": "10%",
-                                                        "left": "3em",
-                                                        "width": "600px",
-                                                        "height": "600px",
-                                                        zIndex: (theme) => theme.zIndex.drawer + 10,
-                                                    }}>
-
-                                                        <Typography variant="h3" sx={{}} align={"left"}>
-                                                            Hello, It's Me
-                                                        </Typography>
-                                                        <Typography variant="h2" sx={{}} align={"left"}>
-                                                            Firaol Tulu
-                                                        </Typography>
-                                                        <Typography variant="h6" sx={{}} align={"left"}>
-                                                            I'm a{" "}
-                                                            <TypeAnimation
-                                                                sequence={[
-                                                                    "Software Developer.",
-                                                                    1000,
-                                                                    "Website Developer.",
-                                                                    1000,
-                                                                    "Backend Developer.",
-                                                                    1000,
-                                                                    "React Developer.",
-                                                                    1000,
-                                                                ]}
-                                                                speed={10}
-                                                                repeat={Infinity}
-                                                                style={{}}
-                                                            />
-                                                        </Typography>
-
-                                                        <Typography variant="subtitle3" align={"left"} sx={{ marginTop: "2em", }}>
-                                                            Hey there! 👋 I'm Firaol Tulu, a Node backend developer and React aficionado.
-                                                            I'm an artist with code, crafting web and mobile app masterpieces. With 2+ years of experience
-                                                            in Serverless, nextjs, API development, and Automation Development, I bring innovation and meet
-                                                            deadlines. Quality, scalability, and serverless magic are my specialties.
-                                                            Let's create something awesome together! 😄✨.
-                                                        </Typography>
-
-                                                        <Grid
-                                                            container
-                                                            // justify={"left"}
-                                                            sx={{ marginTop: "1em" }}>
-
-                                                            <Grid item xs={6}>
-
-                                                                <Button
-                                                                    href="https://chocolate-kristal-51.tiiny.site"
-                                                                    target="_blank"
-                                                                    sx={{
-                                                                        ...theme.typography.estimate,
-                                                                        backgroundColor: theme.palette.secondary.main,
-                                                                        borderRadius: 50,
-                                                                        height: 45,
-                                                                        width: 145,
-                                                                        "&:hover": {
-                                                                            backgroundColor: theme.palette.secondary.light,
-                                                                        },
-                                                                    }}
-
-                                                                    variant="outlined"
-
-                                                                >
-                                                                    <span style={{ marginRight: 10 }}>Download CV</span>
-
-                                                                </Button>
-
-                                                            </Grid>
-
-                                                            <Grid item xs={6}>
-
-                                                                <Button
-                                                                    sx={{
-                                                                        ...theme.typography.learnButton,
-                                                                        backgroundColor: theme.palette.secondary.main,
-                                                                        fontSize: "0.9rem",
-                                                                        height: 45,
-                                                                        width: 145,
-                                                                        "&:hover": {
-                                                                            backgroundColor: theme.palette.secondary.light,
-                                                                        },
-                                                                    }}
-                                                                    variant="outlined"
-                                                                    onClick={() => {
-                                                                        setnavValue({ currentValue: 7, oldValue: navvalue.currentValue });
-                                                                    }}
-                                                                    endIcon={<ArrowForwardIcon
-                                                                        width={15}
-                                                                        height={15}
-                                                                        fill={theme.palette.primary.contrastText}
-                                                                    />}
-                                                                >
-                                                                    <span style={{ marginRight: 8 }}>Contact Me</span>
-
-                                                                </Button>
-
-                                                            </Grid>
-
-                                                        </Grid>
-
-                                                    </Box>
-                                                </Grid>
-
-                                                <Grid item xs={8}>
-                                                    <video
-                                                        autoPlay
-                                                        loop
-                                                        muted
-                                                        // controls
-                                                        // poster={myphoto_one}
-
-                                                        style={{
-                                                            maxWidth: "100%", minWidth: "250px",
-                                                            borderRadius: "5px",
-                                                            // maxHeight: "320px",
-                                                            Height: "100px"
-                                                        }}
-                                                    >
-                                                        <source
-                                                            src={portfolio_video_one}
-                                                            type="video/mp4"
-                                                        />
-
-                                                    </video>
-                                                </Grid>
-
-                                            </Grid>
-
-
-                                        </Card>} */}
                                     </Grid>
                                 }
                             </Grid>
@@ -2071,58 +1911,58 @@ function LandingPage(props) {
                                     //     "50%": { left: "0px", top: matchesMD ? "-20px" : "20px" },
                                     //     "100%": { left: "0px", top: "0px" },
                                     // },
-                                    "-webkit-animation": "about-one-slide-in-left 1.2s linear both",
-                                    "animation": "about-one-slide-in-left 1.2s linear both",
-                                    "@-webkit-keyframes about-one-slide-in-left": {
-                                        "0%": {
-                                            "-webkit-transform": " translateX(-1000px)",
-                                            "transform": "translateX(-1000px)",
-                                            "opacity": "0"
-                                        },
-                                        "100%": {
-                                            "-webkit-transform": "translateX(0)",
-                                            "transform": "translateX(0)",
-                                            "opacity": "1",
-                                        },
-                                    },
-                                    "@keyframes about-one-slide-in-left": {
-                                        "0%": {
-                                            "-webkit-transform": " translateX(-1000px)",
-                                            "transform": "translateX(-1000px)",
-                                            "opacity": "0"
-                                        },
-                                        "100%": {
-                                            "-webkit-transform": "translateX(0)",
-                                            "transform": "translateX(0)",
-                                            "opacity": "1",
-                                        }
-                                    },
-                                    "-webkit-animation": "about-one-slide-out-left 1.8s linear both",
-                                    "animation": "about-one-slide-out-left 1.8s linear both",
-                                    "@-webkit-keyframes about-one-slide-out-left": {
-                                        "0%": {
-                                            "-webkit-transform": "translateX(0)",
-                                            "transform": "translateX(0)",
-                                            "opacity": "1",
-                                        },
-                                        "100%": {
-                                            "-webkit-transform": " translateX(-1000px)",
-                                            "transform": "translateX(-1000px)",
-                                            "opacity": "0"
-                                        },
-                                    },
-                                    "@keyframes about-one-slide-out-left": {
-                                        "0%": {
-                                            "-webkit-transform": "translateX(0)",
-                                            "transform": "translateX(0)",
-                                            "opacity": "1",
-                                        },
-                                        "100%": {
-                                            "-webkit-transform": " translateX(-1000px)",
-                                            "transform": "translateX(-1000px)",
-                                            "opacity": "0"
-                                        }
-                                    },
+                                    // "-webkit-animation": "about-one-slide-in-left 1.2s linear both",
+                                    // "animation": "about-one-slide-in-left 1.2s linear both",
+                                    // "@-webkit-keyframes about-one-slide-in-left": {
+                                    //     "0%": {
+                                    //         "-webkit-transform": " translateX(-1000px)",
+                                    //         "transform": "translateX(-1000px)",
+                                    //         "opacity": "0"
+                                    //     },
+                                    //     "100%": {
+                                    //         "-webkit-transform": "translateX(0)",
+                                    //         "transform": "translateX(0)",
+                                    //         "opacity": "1",
+                                    //     },
+                                    // },
+                                    // "@keyframes about-one-slide-in-left": {
+                                    //     "0%": {
+                                    //         "-webkit-transform": " translateX(-1000px)",
+                                    //         "transform": "translateX(-1000px)",
+                                    //         "opacity": "0"
+                                    //     },
+                                    //     "100%": {
+                                    //         "-webkit-transform": "translateX(0)",
+                                    //         "transform": "translateX(0)",
+                                    //         "opacity": "1",
+                                    //     }
+                                    // },
+                                    // "-webkit-animation": "about-one-slide-out-left 1.8s linear both",
+                                    // "animation": "about-one-slide-out-left 1.8s linear both",
+                                    // "@-webkit-keyframes about-one-slide-out-left": {
+                                    //     "0%": {
+                                    //         "-webkit-transform": "translateX(0)",
+                                    //         "transform": "translateX(0)",
+                                    //         "opacity": "1",
+                                    //     },
+                                    //     "100%": {
+                                    //         "-webkit-transform": " translateX(-1000px)",
+                                    //         "transform": "translateX(-1000px)",
+                                    //         "opacity": "0"
+                                    //     },
+                                    // },
+                                    // "@keyframes about-one-slide-out-left": {
+                                    //     "0%": {
+                                    //         "-webkit-transform": "translateX(0)",
+                                    //         "transform": "translateX(0)",
+                                    //         "opacity": "1",
+                                    //     },
+                                    //     "100%": {
+                                    //         "-webkit-transform": " translateX(-1000px)",
+                                    //         "transform": "translateX(-1000px)",
+                                    //         "opacity": "0"
+                                    //     }
+                                    // },
 
                                 }}>
                                 <CardMedia
@@ -3559,6 +3399,85 @@ function LandingPage(props) {
                                                 <CardContent sx={{ flex: '1 0 auto' }}>
                                                     <Typography variant="subtitle4" textAlign={"center"} color={theme.palette.certifications.contrastText}>
                                                         Skills: R
+                                                    </Typography>
+
+                                                </CardContent>
+
+                                            </Box>
+                                        </Card>
+
+                                    </Box>
+
+                                </Grid>
+
+
+                            </Grid>
+
+                        </Grid>
+
+                        <Grid item xs={12} sx={{ marginBottom: "5px", marginTop: "5px" }}>
+                            <Divider></Divider>
+                        </Grid>
+
+                        <Grid item xs={12} sx={{ marginBottom: "1em" }}>
+
+                            <Grid container direction="row"
+                                sx={{
+                                    alignContent: "center",
+                                    backgroundColor: theme.palette.certifications.main,
+                                    borderRadius: "1em",
+                                }}>
+
+                                <Grid item xs={12} md={6} >
+                                    <Box sx={{ padding: "1em" }}>
+                                        <Card elevation={0} sx={{ display: 'flex', backgroundColor: theme.palette.certifications.main, }}>
+                                            <CardMedia
+                                                component="img"
+                                                sx={{ maxWidth: "170px", minWidth: "104px", maxHeight: "144px", padding: "6px" }}
+                                                image={alxicon}
+                                                alt="Live from space album cover"
+                                            />
+                                            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                                                <CardContent sx={{ flex: '1 0 auto' }}>
+                                                    <Typography variant="h6" color={theme.palette.certifications.contrastText}>
+                                                        Software Engineering
+                                                    </Typography>
+                                                    <Typography variant="subtitle5" color={theme.palette.certifications.contrastText}>
+                                                        ALX<br></br>
+                                                    </Typography>
+                                                    <Typography variant="subtitle4" color={theme.palette.certifications.contrastText}>
+                                                        Issued July 2024<br></br>
+                                                    </Typography>
+                                                    <Typography variant="subtitle4" color={theme.palette.certifications.contrastText}>
+                                                        Credential ID 3XcLC9pTfG<br></br>
+                                                    </Typography>
+                                                </CardContent>
+                                                <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
+                                                    <Button variant="outlined" href={'https://intranet.alxswe.com/certificates/3XcLC9pTfG'} target="_blank" size="small" endIcon={<SendIcon />}>
+                                                        show Credential
+                                                    </Button>
+
+                                                </Box>
+                                            </Box>
+                                        </Card>
+
+                                    </Box>
+                                </Grid>
+
+                                <Grid item xs={12} md={6} >
+
+                                    <Box sx={{ padding: "1em" }}>
+                                        <Card elevation={0} sx={{ display: 'flex', backgroundColor: theme.palette.certifications.main, }}>
+                                            <CardMedia
+                                                component="img"
+                                                sx={{ borderRadius: "5px", maxWidth: "170px", minWidth: "104px", maxHeight: "144px", padding: "6px" }}
+                                                image={certificatethree}
+                                                alt="Live from space album cover"
+                                            />
+                                            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                                                <CardContent sx={{ flex: '1 0 auto' }}>
+                                                    <Typography variant="subtitle4" textAlign={"center"} color={theme.palette.certifications.contrastText}>
+                                                        Skills: C++, Python, C#, JavaScript, Node.js
                                                     </Typography>
 
                                                 </CardContent>
